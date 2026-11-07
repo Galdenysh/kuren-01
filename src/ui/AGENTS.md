@@ -3,7 +3,7 @@
 React только рисует снимок из `src/core`. Математику сюда не тащить.
 
 ```
-src/ui/app       оболочка, default export App
+src/ui/app       оболочка, App, SlotCard, globals.css, *.module.css
 src/ui/lab       NetworkGraph, LossChart, WeightView, TrainingLab — named exports
 ```
 
@@ -13,7 +13,7 @@ src/ui/lab       NetworkGraph, LossChart, WeightView, TrainingLab — named expo
 - Не рисовать фейковую сеть: только числа из снимка
 - UI-тексты на русском, идентификаторы на английском
 - Полный FSD/FDS не использовать как ось репозитория. Если экранов станет много — FSD только внутри `src/ui`
-- Стили рядом с лабораторией. Без CSS-in-JS, пока change этого не просит
+- Стили: CSS modules рядом с компонентом. Токены и reset — `app/globals.css`. Без Tailwind и CSS-in-JS
 - Не прятать математику сети в React state updaters
 
 ## Проверка

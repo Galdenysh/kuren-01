@@ -61,6 +61,16 @@
       }
     },
     {
+      "label": "Format",
+      "type": "npm",
+      "script": "format",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "group": "kuren"
+      }
+    },
+    {
       "label": "Lint",
       "type": "npm",
       "script": "lint",

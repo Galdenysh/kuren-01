@@ -9,14 +9,15 @@ rules:
   proposal:
     - Always state what is out of scope
     - Keep proposals under 500 words
+    - Do not start a new change for a typo, lint, or a bug already specified; offer a fork first
   design:
     - Record the core vs ui boundary if the change touches both
   tasks:
     - One agent session should be able to finish the change
-    - "Core work is test-first: a failing test task before the implementation task"
+    - 'Core work is test-first: a failing test task before the implementation task'
     - UI tasks come after core tests are specified as green
     - Every task must say how to verify it
-    - "End with a done-gate group: test, lint, build, and browser if UI changed"
+    - 'End with a done-gate group: test, lint, build, and browser if UI changed'
     - Do not include a transformer, language model, or agent loop in xor-training-lab
 
 operations:

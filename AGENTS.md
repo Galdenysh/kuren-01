@@ -1,15 +1,16 @@
 # AGENTS
 
-Kuren-01 — учебная нейросеть. Правила лежат во вложенных `AGENTS.md`, не здесь.
+Kuren-01 — учебная нейросеть. Правила лежат во вложенных `AGENTS.md`, не здесь и не в `.cursor/rules`.
+Цикл среза — `openspec/AGENTS.md` в любой области. `.cursor/rules` — адаптер Cursor. Вне Cursor: те же файлы и `npx openspec`.
 
 Перед кодом открой файл области:
 
-| Область | Файл |
-| --- | --- |
+| Область                         | Файл                                     |
+| ------------------------------- | ---------------------------------------- |
 | Цикл среза, OpenSpec, done-gate | [openspec/AGENTS.md](openspec/AGENTS.md) |
-| Ядро сети, TDD, XOR | [src/core/AGENTS.md](src/core/AGENTS.md) |
-| Лаборатория, React | [src/ui/AGENTS.md](src/ui/AGENTS.md) |
-| Skills и Cursor | [.cursor/AGENTS.md](.cursor/AGENTS.md) |
+| Ядро сети, TDD, XOR             | [src/core/AGENTS.md](src/core/AGENTS.md) |
+| Лаборатория, React              | [src/ui/AGENTS.md](src/ui/AGENTS.md)     |
+| Skills и Cursor                 | [.cursor/AGENTS.md](.cursor/AGENTS.md)   |
 
 OpenSpec-skills (вызов `/opsx-*`):
 
