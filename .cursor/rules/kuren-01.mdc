@@ -1,0 +1,15 @@
+---
+description: Kuren-01 project boundaries for every session
+alwaysApply: true
+---
+
+# Kuren-01
+
+Educational neural net in TypeScript + React. Not a GPT replacement.
+
+- Scaffold is the base. Implement one OpenSpec change per session.
+- Next change: `xor-training-lab` (`/opsx-apply`).
+- No PyTorch, TensorFlow, ONNX, Hugging Face, or other trained-model runtimes.
+- `src/nn` math, `src/viz` display, `src/agent` later. Do not fill all three at once.
+- UI and docs in Russian. Code in English.
+- Read `AGENTS.md` before writing code.

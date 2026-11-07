@@ -1,0 +1,29 @@
+schema: spec-driven
+
+context: |
+  Kuren-01 is an educational TypeScript neural net and later an AI agent.
+  It is practice, not a GPT/Claude competitor.
+  Scaffold only exists today: Vite + React + TS. src/nn, src/viz, src/agent are empty slots.
+  Do not implement a full model in one session. One OpenSpec change per agent session.
+  Neural net code must be written from scratch in TypeScript. No PyTorch, TensorFlow, ONNX, Hugging Face, or other trained-model runtimes.
+  React visualizes trainer state. It must not hide the math.
+  Code identifiers and comments: English. UI copy and docs: Russian.
+  Next implementation change: xor-training-lab.
+
+rules:
+  proposal:
+    - Always state what is out of scope
+    - Keep proposals under 500 words
+  tasks:
+    - One agent session should be able to finish the change
+    - Every task must say how to verify it
+    - Do not include implementing a transformer, language model, or agent loop in the first XOR change
+
+operations:
+  apply:
+    guidance:
+      - Implement only the current OpenSpec change
+      - Do not start the next model stage in the same session
+  archive:
+    guidance:
+      - Summarize what the next agent should pick up
