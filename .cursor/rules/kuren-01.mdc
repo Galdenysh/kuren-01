@@ -1,15 +1,14 @@
 ---
-description: Kuren-01 index: nested AGENTS.md, no unsolicited dev server
+description: Cursor adapter — project law is in nested AGENTS.md
 alwaysApply: true
 ---
 
-# Kuren-01
+# Cursor adapter
 
-Root `AGENTS.md` is an index only. Before coding, read the nested `AGENTS.md` for the area you touch: `openspec/`, `src/core/`, `src/ui/`, `.cursor/`.
+Project law is in nested `AGENTS.md`, not here.
 
-- One OpenSpec change per session. Next implementation: `xor-training-lab` via `/opsx-apply` only after the user reviewed that change's `proposal.md` and `design.md`.
-- Do not execute `tasks.md` or write slice code until that review.
-- Do not write `src/ui/lab` until that change's core tests are green.
-- Do not start `vite` or `npm run dev` unless the user asked in this message. They start Dev via Run Task.
-- Do not commit or push unless asked.
-- Done means `npm run verify` is green.
+Before coding, read:
+
+1. Root `AGENTS.md` (index)
+2. `openspec/AGENTS.md` (cycle, review, verify) — even when editing `src/ui` or `src/core`
+3. The area file you touch: `src/core/AGENTS.md`, `src/ui/AGENTS.md`, or `.cursor/AGENTS.md`

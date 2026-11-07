@@ -1,7 +1,9 @@
 # Cursor
 
-Always-on правила — вложенные `AGENTS.md` и `.cursor/rules` с `alwaysApply: true`. Skill — плейбук, который не нужен в каждом чате и вызывается `/имя` или OpenSpec-командой.
+Закон проекта — вложенные `AGENTS.md` и OpenSpec, не `.cursor/rules`.
+`.cursor/rules` — адаптер Cursor: какие `AGENTS.md` открыть. Не копируй туда цикл среза.
 
+Skill — плейбук Cursor (`/имя`). Вне Cursor тот же цикл: `npx openspec` и `openspec/AGENTS.md`.
 Grok в Cursor может не открыть `SKILL.md`. Не клади туда то, без чего нельзя работать.
 
 ## Если skill нужен

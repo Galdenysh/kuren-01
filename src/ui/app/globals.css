@@ -1,0 +1,39 @@
+:root {
+  color-scheme: dark;
+  --bg: #16171d;
+  --text: #c5c7d0;
+  --text-h: #f3f4f6;
+  --border: #2e303a;
+  --card: #1f2028;
+  --accent: #c084fc;
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+  font: 18px/145% var(--sans);
+  color: var(--text);
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+p {
+  margin: 0;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 15px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #2a2b35;
+  color: var(--text-h);
+}

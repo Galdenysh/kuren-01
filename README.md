@@ -6,11 +6,11 @@
 
 ## Запуск
 
-Нужен Node.js только как инструмент (npm, Vite, Vitest). Отдельного бэкенда нет: сеть учится в браузере в `src/core`, React это рисует.
+Нужен Node.js **>= 20.19** (в `.nvmrc` стоит 22). Vite 8 на 18 не стартует. Отдельного бэкенда нет: сеть учится в браузере в `src/core`, React это рисует.
 
 В Cursor: **Terminal → Run Task… → Dev** (или `⇧⌘B`). Агенты сервер сами не поднимают.
 
-Другие задачи: Test, Lint, Build, Verify.
+Другие задачи: Test, Lint, Format, Build, Verify.
 
 ```bash
 npm install

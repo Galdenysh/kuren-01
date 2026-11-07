@@ -3,17 +3,22 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "oxlint",
-    "preview": "vite preview",
-    "test": "vitest run --passWithNoTests",
-    "test:watch": "vitest",
-    "agents:check": "node scripts/check-agents.mjs",
-    "core:imports": "node scripts/check-core-imports.mjs",
-    "verify": "npm run agents:check && npm run core:imports && npm run lint && npm test && npm run build",
-    "openspec": "openspec"
+    "dev": "./scripts/with-node.sh vite",
+    "build": "./scripts/with-node.sh bash -c 'tsc -b && vite build'",
+    "lint": "./scripts/with-node.sh oxlint",
+    "format": "./scripts/with-node.sh oxfmt",
+    "format:check": "./scripts/with-node.sh oxfmt --check",
+    "preview": "./scripts/with-node.sh vite preview",
+    "test": "./scripts/with-node.sh vitest run --passWithNoTests",
+    "test:watch": "./scripts/with-node.sh vitest",
+    "agents:check": "./scripts/with-node.sh node scripts/check-agents.mjs",
+    "core:imports": "./scripts/with-node.sh node scripts/check-core-imports.mjs",
+    "verify": "./scripts/with-node.sh bash -c 'npm run agents:check && npm run core:imports && npm run lint && npm run format:check && npm test && npm run build'",
+    "openspec": "./scripts/with-node.sh openspec"
   },
   "dependencies": {
     "react": "^19.3.1",
@@ -25,6 +30,7 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",
+    "oxfmt": "^0.77.0",
     "oxlint": "^1.90.0",
     "typescript": "~7.0.2",
     "vite": "^8.3.6",
