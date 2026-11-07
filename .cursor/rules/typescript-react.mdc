@@ -6,7 +6,5 @@ alwaysApply: false
 
 # TypeScript + React
 
-- Functional components, named exports for viz pieces, default export only for `App`.
-- Keep trainer snapshots as plain data (`number`, arrays, small objects).
-- Do not hide network math inside React state updaters.
-- Colocate styles with the lab. No CSS-in-JS library unless a change says so.
+Follow `src/core/AGENTS.md` or `src/ui/AGENTS.md` for the files you touch.
+`src/core/**` must not import `react` or `src/ui/**`.

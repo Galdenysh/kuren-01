@@ -7,11 +7,11 @@
 ## ADDED Requirements
 
 ### Requirement: From-scratch tensor math
-Система MUST выполнять тензорные операции внутри собственного TypeScript-кода в `src/nn`. Система MUST NOT подключать PyTorch, TensorFlow, ONNX, Hugging Face или другие рантаймы обученных моделей.
+Система MUST выполнять тензорные операции внутри собственного TypeScript-кода в `src/core/nn`. Система MUST NOT подключать PyTorch, TensorFlow, ONNX, Hugging Face или другие рантаймы обученных моделей. Система MUST NOT импортировать React из этих модулей.
 
 #### Scenario: No black-box ML runtime
 - **WHEN** агент добавляет зависимость для обучения или inference
-- **THEN** это не ML-рантайм, и математика сети остаётся в `src/nn`
+- **THEN** это не ML-рантайм, и математика сети остаётся в `src/core/nn`
 
 ### Requirement: Visible autograd
 Система MUST считать градиенты через явный backward по графу операций. Значения тензоров и градиентов MUST быть доступны коду визуализации без разбора приватных полей фреймворка.

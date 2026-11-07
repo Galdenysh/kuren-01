@@ -1,41 +1,25 @@
 # AGENTS
 
-Kuren-01 — учебная нейросеть и позже агент. Практика, не конкурент GPT/Claude.
+Kuren-01 — учебная нейросеть. Правила лежат во вложенных `AGENTS.md`, не здесь.
 
-Каркас уже поднят. **Не пиши модель целиком в одной сессии.**
+Перед кодом открой файл области:
 
-## Перед работой
+| Область | Файл |
+| --- | --- |
+| Цикл среза, OpenSpec, done-gate | [openspec/AGENTS.md](openspec/AGENTS.md) |
+| Ядро сети, TDD, XOR | [src/core/AGENTS.md](src/core/AGENTS.md) |
+| Лаборатория, React | [src/ui/AGENTS.md](src/ui/AGENTS.md) |
+| Skills и Cursor | [.cursor/AGENTS.md](.cursor/AGENTS.md) |
 
-1. Прочитай `PLAN.md`.
-2. Открой текущий срез: `npx openspec list` и `npx openspec status --change xor-training-lab`.
-3. Реализуй только этот срез: `/opsx-apply` или skill `openspec-apply-change`.
-4. Skills: `kuren-handoff`, `kuren-nn`, `kuren-viz`.
+OpenSpec-skills (вызов `/opsx-*`):
 
-## Слоты
+- [.cursor/skills/openspec-explore/SKILL.md](.cursor/skills/openspec-explore/SKILL.md) — `/opsx-explore`
+- [.cursor/skills/openspec-propose/SKILL.md](.cursor/skills/openspec-propose/SKILL.md) — `/opsx-propose`
+- [.cursor/skills/openspec-apply-change/SKILL.md](.cursor/skills/openspec-apply-change/SKILL.md) — `/opsx-apply`
+- [.cursor/skills/openspec-update-change/SKILL.md](.cursor/skills/openspec-update-change/SKILL.md) — `/opsx-update`
+- [.cursor/skills/openspec-sync-specs/SKILL.md](.cursor/skills/openspec-sync-specs/SKILL.md) — `/opsx-sync`
+- [.cursor/skills/openspec-archive-change/SKILL.md](.cursor/skills/openspec-archive-change/SKILL.md) — `/opsx-archive`
 
-| Путь        | Сейчас     | Кто заполняет              |
-| ----------- | ---------- | -------------------------- |
-| `src/nn`    | пусто      | агент среза `xor-training-lab` |
-| `src/viz`   | пусто      | тот же срез                |
-| `src/agent` | пусто      | отдельный будущий срез     |
-| `src/app`   | оболочка   | можно подключить лабораторию |
+Индекс обязан покрывать все вложенные `AGENTS.md` и `SKILL.md`: `npm run agents:check`.
 
-## Запрещено
-
-- ML-рантаймы: PyTorch, TensorFlow, ONNX, Hugging Face, brain.js, synaptic
-- transformer / LM / агентный цикл в срезе XOR
-- коммит и git remote, пока пользователь не попросил
-
-## Стек
-
-TypeScript, React, Vite. `npm run dev`, `npm run build`.
-
-## Плагин для Grok / Composer
-
-Агент не может поставить Marketplace-плагин за пользователя.
-
-1. Cursor → **Marketplace**
-2. Поставить **pstack** (основной: меньше кода, проверяемые шаги)
-3. По желанию **teaching** (учебные сессии)
-
-После установки перезапусти Cursor. Grok 4.6 и Composer работают с pstack без отдельного «Grok-only» плагина.
+Следующий срез: `xor-training-lab`.

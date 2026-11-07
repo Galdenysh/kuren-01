@@ -6,10 +6,10 @@
 
 ## What Changes
 
-- Свой крошечный тензор и autograd в `src/nn`
-- MLP `2 → 2 → 1`, обучение на XOR
-- React-лаборатория в `src/viz`: граф нейронов, активации, loss, шаг Train
-- Оболочка `src/app` показывает лабораторию вместо заглушки слотов
+- Свой крошечный тензор и autograd в `src/core/nn`, TDD-first
+- MLP `2 → 2 → 1`, обучение на XOR, пока тесты не зелёные
+- React-лаборатория в `src/ui/lab`: граф нейронов, активации, loss, шаг Train
+- Оболочка `src/ui/app` показывает лабораторию вместо заглушки слотов
 - Агентный цикл, transformer и языковая модель **вне скоупа**
 
 ## Capabilities
@@ -25,6 +25,6 @@
 
 ## Impact
 
-- `src/nn/**`, `src/viz/**`, `src/app/**` / `src/App.tsx`
+- `src/core/nn/**`, `src/ui/lab/**`, `src/ui/app/**`
 - без новых ML-библиотек
-- `src/agent` не трогать
+- `src/core/agent` не трогать

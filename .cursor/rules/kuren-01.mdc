@@ -1,15 +1,15 @@
 ---
-description: Kuren-01 project boundaries for every session
+description: Kuren-01 index: nested AGENTS.md, no unsolicited dev server
 alwaysApply: true
 ---
 
 # Kuren-01
 
-Educational neural net in TypeScript + React. Not a GPT replacement.
+Root `AGENTS.md` is an index only. Before coding, read the nested `AGENTS.md` for the area you touch: `openspec/`, `src/core/`, `src/ui/`, `.cursor/`.
 
-- Scaffold is the base. Implement one OpenSpec change per session.
-- Next change: `xor-training-lab` (`/opsx-apply`).
-- No PyTorch, TensorFlow, ONNX, Hugging Face, or other trained-model runtimes.
-- `src/nn` math, `src/viz` display, `src/agent` later. Do not fill all three at once.
-- UI and docs in Russian. Code in English.
-- Read `AGENTS.md` before writing code.
+- One OpenSpec change per session. Next implementation: `xor-training-lab` via `/opsx-apply` only after the user reviewed that change's `proposal.md` and `design.md`.
+- Do not execute `tasks.md` or write slice code until that review.
+- Do not write `src/ui/lab` until that change's core tests are green.
+- Do not start `vite` or `npm run dev` unless the user asked in this message. They start Dev via Run Task.
+- Do not commit or push unless asked.
+- Done means `npm run verify` is green.

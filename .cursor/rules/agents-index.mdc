@@ -1,0 +1,11 @@
+---
+description: Re-index AGENTS.md and skills after changing them
+globs: "**/AGENTS.md,.cursor/skills/**/SKILL.md,.agents/skills/**/SKILL.md,.cursor/commands/**/*.md"
+alwaysApply: false
+---
+
+# Agents index
+
+After creating, renaming, or deleting a nested `AGENTS.md`, `SKILL.md`, or `/opsx-*` command, run `npm run agents:check`.
+
+If it fails, fix the root `AGENTS.md` index (add the new path or drop the stale one) and run the check again. Do not finish while it is red.
