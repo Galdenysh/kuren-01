@@ -13,7 +13,7 @@ rules:
   design:
     - Record the core vs ui boundary if the change touches both
   tasks:
-    - One agent session should be able to finish the change
+    - One ## section of tasks.md is one review stop unless the user asked to run the whole plan
     - 'Core work is test-first: a failing test task before the implementation task'
     - UI tasks come after core tests are specified as green
     - Every task must say how to verify it
@@ -30,6 +30,7 @@ operations:
       - If UI changed, ask the user to start Dev via Run Task, then verify in the browser. Do not start the server unless they asked
       - Do not start vite, npm run dev, or other long-running servers unless the user explicitly asked in this message
       - Do not execute tasks.md or write slice code until the user has reviewed proposal.md and design.md in this conversation
+      - After finishing a ## section in tasks.md, stop for code review unless the user asked to run the whole plan
       - Implement only the current OpenSpec change
   archive:
     guidance:
