@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Mlp, Trainer, XOR_DATASET, type NetworkSnapshot } from '../../core/nn'
+import { Mlp, Trainer, XOR_DATASET } from '../../core/nn'
+import { InputProbePicker } from './InputProbePicker'
 import { LossChart } from './LossChart'
 import { NetworkGraph } from './NetworkGraph'
 import styles from './TrainingLab.module.css'
@@ -13,22 +14,29 @@ export function TrainingLab() {
     () => new Trainer(Mlp.xorMlp(LAB_SEED), XOR_DATASET),
   )
 
-  const [snapshot, setSnapshot] = useState<NetworkSnapshot>(() =>
-    trainer.forwardSnapshot(),
-  )
+  const [probeIndex, setProbeIndex] = useState(0)
+  const probeInputs = XOR_DATASET[probeIndex]!.inputs
+  const probeTarget = XOR_DATASET[probeIndex]!.target
+
+  const [trainRevision, setTrainRevision] = useState(0)
   const [lossHistory, setLossHistory] = useState<number[]>(() => [
-    snapshot.loss,
+    trainer.forwardSnapshot().loss,
   ])
 
+  const snapshot = trainer.probeSnapshot(probeInputs)
+
   const runSteps = (count: number) => {
-    let last: NetworkSnapshot = snapshot
     const newLosses: number[] = []
     for (let i = 0; i < count; i++) {
-      last = trainer.trainStep()
-      newLosses.push(last.loss)
+      const step = trainer.trainStep()
+      newLosses.push(step.loss)
     }
-    setSnapshot(last)
+    setTrainRevision((n) => n + 1)
     setLossHistory((prev) => [...prev, ...newLosses])
+  }
+
+  const onProbeSelect = (index: number) => {
+    setProbeIndex(index)
   }
 
   return (
@@ -61,8 +69,14 @@ export function TrainingLab() {
         </p>
       </div>
 
+      <InputProbePicker selectedIndex={probeIndex} onSelect={onProbeSelect} />
+
       <div className={styles.panels}>
-        <NetworkGraph snapshot={snapshot} />
+        <NetworkGraph
+          key={`${trainRevision}-${probeIndex}`}
+          snapshot={snapshot}
+          expectedTarget={probeTarget}
+        />
         <LossChart losses={lossHistory} />
       </div>
 

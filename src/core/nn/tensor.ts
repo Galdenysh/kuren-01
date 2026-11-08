@@ -2,6 +2,10 @@ export type Shape = readonly [number, number]
 
 type BackwardFn = () => void
 
+/**
+ * Матрица чисел + autograd для `mlp` / `trainer`.
+ * `data` — значения (веса, активации); `grad` — ∂loss/∂data после {@link Tensor.backward}.
+ */
 export class Tensor {
   readonly rows: number
   readonly cols: number
@@ -30,6 +34,7 @@ export class Tensor {
     return [this.rows, this.cols]
   }
 
+  /** Создать тензор из литерала; `requiresGrad: true` — участвует в обучении. */
   static from(
     values: number[][],
     options?: { requiresGrad?: boolean },
@@ -190,12 +195,17 @@ export class Tensor {
     }
   }
 
+  /** Обнулить `grad` перед новым `backward` (фаза backward в `trainer.trainStep`). */
   zeroGrad(): void {
     if (this.grad) {
       this.grad.fill(0)
     }
   }
 
+  /**
+   * Распространить градиент от этого узла к родителям по графу операций.
+   * Для loss: старт ∂loss/∂loss = 1; весам пишется в `grad[i]`.
+   */
   backward(): void {
     if (!this.requiresGrad) {
       return
@@ -211,6 +221,7 @@ export class Tensor {
     }
   }
 
+  /** SGD: `data[i] -= learningRate * grad[i]` (фаза update в `trainer.trainStep`). */
   applyGrad(learningRate: number): void {
     if (!this.grad) {
       return

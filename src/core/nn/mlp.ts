@@ -2,6 +2,10 @@ import type { XorSample } from './dataset'
 import type { NetworkSnapshot } from './snapshot'
 import { Tensor } from './tensor'
 
+/**
+ * MLP 2 → 2 → 1 для XOR. Хранит обучаемые веса; {@link forwardRow} — один forward.
+ * Цикл обучения — в `trainer.ts`, не здесь.
+ */
 export class Mlp {
   readonly w1: Tensor
   readonly b1: Tensor
@@ -15,6 +19,7 @@ export class Mlp {
     this.b2 = b2
   }
 
+  /** Сеть с псевдослучайными весами по `seed` (воспроизводимо в тестах и UI). */
   static xorMlp(seed: number): Mlp {
     const rand = seededRandom(seed)
     const w1 = Tensor.from(
@@ -30,6 +35,13 @@ export class Mlp {
     return new Mlp(w1, b1, w2, b2)
   }
 
+  /**
+   * Forward для одной строки из `dataset.ts`.
+   * Вход: `(x1, x2)`. Выход: тензор предсказания.
+   *
+   * `@param captureActivations` — если true, вернуть `activations` (числа в кружках графа).
+   * Скрытый и выход — после sigmoid; вход — без sigmoid. См. `NetworkSnapshot`.
+   */
   forwardRow(
     inputs: readonly [number, number],
     captureActivations = false,
@@ -54,15 +66,18 @@ export class Mlp {
     return { output, activations }
   }
 
+  /** Один forward без обучения; выходные числа как в ответе сети. Нужна в основном тестам (`xor.test.ts`). */
   predict(inputs: readonly [number, number]): number[] {
     const { output } = this.forwardRow(inputs)
     return output.toArray()[0]
   }
 
+  /** Ссылки на обучаемые тензоры (те же объекты, что в forward и в `grad` после backward). */
   parameters(): Tensor[] {
     return [this.w1, this.b1, this.w2, this.b2]
   }
 
+  /** Собрать plain-объект для UI: числа из `toArray`, без тензоров и autograd. */
   snapshot(
     loss: number,
     lastActivations: NetworkSnapshot['activations'],
@@ -88,6 +103,10 @@ function seededRandom(seed: number): () => number {
   }
 }
 
+/**
+ * Среднеквадратичная ошибка по batch из `dataset`: Σ(pred − target)² / N.
+ * Возвращает скалярный тензор loss с `requiresGrad` для `trainer.trainStep`.
+ */
 export function mseLoss(
   predictions: Tensor[],
   samples: readonly XorSample[],

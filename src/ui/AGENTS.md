@@ -12,6 +12,7 @@ src/ui/lab       NetworkGraph, LossChart, WeightView, TrainingLab — named expo
 - Писать лабораторию только после зелёных тестов ядра этого среза
 - Не рисовать фейковую сеть: только числа из снимка
 - UI-тексты на русском, идентификаторы на английском
+- JSDoc и комментарии в `src/ui/**` — русский (как в [../core/AGENTS.md](../core/AGENTS.md))
 - Полный FSD/FDS не использовать как ось репозитория. Если экранов станет много — FSD только внутри `src/ui`
 - Стили: CSS modules рядом с компонентом. Токены и reset — `app/globals.css`. Без Tailwind и CSS-in-JS
 - Не прятать математику сети в React state updaters

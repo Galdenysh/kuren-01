@@ -4,10 +4,18 @@ import styles from './NetworkGraph.module.css'
 
 interface NetworkGraphProps {
   readonly snapshot: NetworkSnapshot
+  readonly expectedTarget?: number
 }
 
-export function NetworkGraph({ snapshot }: NetworkGraphProps) {
-  const { input, hidden, output } = snapshot.activations
+export function NetworkGraph({ snapshot, expectedTarget }: NetworkGraphProps) {
+  const input = snapshot.activations.input
+  const outputProb = snapshot.activations.output[0] ?? 0
+  const predicted = outputProb >= 0.5 ? 1 : 0
+  const targetLine =
+    expectedTarget === undefined
+      ? null
+      : `Цель XOR: ${expectedTarget} · выход ${outputProb.toFixed(2)} (класс ${predicted})`
+  const { hidden, output } = snapshot.activations
   const neurons = [
     { layer: 0, values: input },
     { layer: 1, values: hidden },
@@ -16,7 +24,10 @@ export function NetworkGraph({ snapshot }: NetworkGraphProps) {
 
   return (
     <figure className={styles.figure}>
-      <figcaption className={styles.caption}>Граф 2 → 2 → 1</figcaption>
+      <figcaption className={styles.caption}>
+        Граф 2 → 2 → 1 · вход ({input[0]}, {input[1]})
+      </figcaption>
+      {targetLine ? <p className={styles.meta}>{targetLine}</p> : null}
       <p className={styles.hint}>Активации в кружках; веса — в таблице ниже.</p>
       <svg
         className={styles.svg}
