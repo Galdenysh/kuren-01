@@ -1,0 +1,39 @@
+.figure {
+  margin: 0;
+}
+
+.caption {
+  color: var(--text-h);
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.svg {
+  width: 100%;
+  max-width: 320px;
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #1a1b22;
+}
+
+.line {
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.dot {
+  fill: var(--text-h);
+}
+
+.meta {
+  font-family: var(--mono);
+  font-size: 13px;
+  margin-top: 8px;
+  color: var(--text);
+}
+
+.empty {
+  font-size: 14px;
+  color: var(--text);
+}
