@@ -1,0 +1,118 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.heading {
+  margin: 0;
+  color: var(--text-h);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.lead {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 72ch;
+  color: var(--text);
+}
+
+.lead strong {
+  color: var(--text-h);
+  font-weight: 500;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.block {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: var(--card);
+  overflow-x: auto;
+}
+
+.subheading {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: var(--text-h);
+  font-weight: 500;
+}
+
+.biasLead {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.biasLead em {
+  font-style: normal;
+  color: var(--text-h);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  table-layout: fixed;
+}
+
+.table th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--text);
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.table th.numCol {
+  text-align: right;
+}
+
+.table td {
+  padding: 8px;
+  color: var(--text-h);
+  border-bottom: 1px solid #2a2b33;
+  vertical-align: top;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.arrowCol {
+  width: 1.5rem;
+  text-align: center;
+  color: var(--accent);
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.numCol {
+  width: 5.75rem;
+  text-align: right;
+  font-family: var(--mono);
+  white-space: nowrap;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.codeCol {
+  width: 6.25rem;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.codeCol code {
+  padding: 0;
+  background: transparent;
+  font-size: inherit;
+}
