@@ -4,7 +4,7 @@
 export interface XorSample {
   /** Значения на вход сети, например `(0, 1)`. */
   readonly inputs: readonly [number, number]
-  /** Эталон; trainer сравнивает предсказание с этим числом при расчёте loss. */
+  /** Верный ответ (0 или 1) для этой пары входов; эталон при расчёте loss (`mseLoss`). */
   readonly target: number
 }
 

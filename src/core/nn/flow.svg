@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200" role="img" aria-label="Potok obucheniya i snimka dlya UI">
+  <title>dataset, trainStep, forwardRow, tensor, NetworkSnapshot, UI</title>
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8" fill="#5c4d7a"/>
+    </marker>
+  </defs>
+  <rect width="640" height="200" fill="#ffffff"/>
+
+  <text x="16" y="24" font-family="system-ui,sans-serif" font-size="11" fill="#666">trainStep: forward, loss, backward, update</text>
+
+  <rect x="16" y="48" width="88" height="44" rx="8" fill="#f7f5fb" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="60" y="76" font-family="ui-monospace,monospace" font-size="12" fill="#2d2640" text-anchor="middle">dataset</text>
+
+  <rect x="132" y="48" width="128" height="44" rx="8" fill="#f7f5fb" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="196" y="68" font-family="ui-monospace,monospace" font-size="12" fill="#2d2640" text-anchor="middle">Trainer</text>
+  <text x="196" y="84" font-family="ui-monospace,monospace" font-size="11" fill="#2d2640" text-anchor="middle">.trainStep</text>
+
+  <rect x="288" y="48" width="120" height="44" rx="8" fill="#f7f5fb" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="348" y="68" font-family="ui-monospace,monospace" font-size="12" fill="#2d2640" text-anchor="middle">Mlp</text>
+  <text x="348" y="84" font-family="ui-monospace,monospace" font-size="11" fill="#2d2640" text-anchor="middle">.forwardRow</text>
+
+  <rect x="436" y="48" width="88" height="44" rx="8" fill="#f7f5fb" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="480" y="76" font-family="ui-monospace,monospace" font-size="12" fill="#2d2640" text-anchor="middle">Tensor</text>
+
+  <line x1="104" y1="70" x2="128" y2="70" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="260" y1="70" x2="284" y2="70" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="408" y1="70" x2="432" y2="70" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="248" y="132" width="168" height="48" rx="8" fill="#f7f5fb" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="332" y="154" font-family="ui-monospace,monospace" font-size="12" fill="#2d2640" text-anchor="middle">NetworkSnapshot</text>
+  <text x="332" y="170" font-family="system-ui,sans-serif" font-size="11" fill="#1a1a22" text-anchor="middle">loss, weights, activations</text>
+
+  <rect x="472" y="134" width="72" height="44" rx="8" fill="#f7f5fb" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="508" y="161" font-family="ui-monospace,monospace" font-size="12" fill="#2d2640" text-anchor="middle">UI</text>
+  <text x="508" y="176" font-family="system-ui,sans-serif" font-size="10" fill="#1a1a22" text-anchor="middle">ui/lab</text>
+
+  <path d="M196,92 L196,112 L332,112 L332,128" fill="none" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+  <path d="M348,92 L348,112 L332,112" fill="none" stroke="#5c4d7a" stroke-width="2"/>
+  <line x1="416" y1="156" x2="468" y2="156" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+
+  <text x="16" y="196" font-family="system-ui,sans-serif" font-size="11" fill="#666">probeSnapshot: forward only, no weight update</text>
+</svg>

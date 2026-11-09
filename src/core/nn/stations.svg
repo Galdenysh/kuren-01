@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 296" role="img" aria-label="MLP route and neuron stations">
+  <title>2-2-1 forward route and single-neuron station chain</title>
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8" fill="#5c4d7a"/>
+    </marker>
+    <marker id="arrD" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8" fill="#6b5b8a"/>
+    </marker>
+  </defs>
+  <rect width="720" height="296" fill="#ffffff"/>
+
+  <text x="16" y="22" font-family="system-ui,sans-serif" font-size="11" fill="#666">Full 2-2-1 (one XOR sample i) - forward left to right</text>
+
+  <!-- x_i -->
+  <rect x="16" y="40" width="44" height="36" rx="6" fill="#f7f5fb" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="38" y="63" font-family="ui-monospace,monospace" font-size="12" fill="#2d2640" text-anchor="middle">x_i</text>
+
+  <line x1="60" y1="58" x2="78" y2="58" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- hidden layer group -->
+  <rect x="80" y="32" width="168" height="52" rx="8" fill="#f0ecf8" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="164" y="50" font-family="system-ui,sans-serif" font-size="10" fill="#5c4d7a" text-anchor="middle">hidden layer</text>
+  <text x="164" y="68" font-family="ui-monospace,monospace" font-size="11" fill="#2d2640" text-anchor="middle">matmul W1  add b1  sigmoid</text>
+
+  <line x1="248" y1="58" x2="266" y2="58" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="268" y="40" width="36" height="36" rx="6" fill="#f7f5fb" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="286" y="63" font-family="ui-monospace,monospace" font-size="12" fill="#2d2640" text-anchor="middle">h</text>
+
+  <line x1="304" y1="58" x2="322" y2="58" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- output layer group -->
+  <rect x="324" y="32" width="168" height="52" rx="8" fill="#f0ecf8" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="408" y="50" font-family="system-ui,sans-serif" font-size="10" fill="#5c4d7a" text-anchor="middle">output layer</text>
+  <text x="408" y="68" font-family="ui-monospace,monospace" font-size="11" fill="#2d2640" text-anchor="middle">matmul W2  add b2  sigmoid</text>
+
+  <line x1="492" y1="58" x2="510" y2="58" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="512" y="40" width="52" height="36" rx="6" fill="#f7f5fb" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="538" y="63" font-family="ui-monospace,monospace" font-size="12" fill="#2d2640" text-anchor="middle">y_hat</text>
+
+  <!-- loss branch: one y_hat shown; trainStep runs forward x4, then mseLoss -->
+  <path d="M538,76 L538,96" fill="none" stroke="#5c4d7a" stroke-width="2"/>
+  <text x="556" y="90" font-family="system-ui,sans-serif" font-size="10" fill="#666">x4</text>
+  <path d="M538,96 L280,96 L280,118" fill="none" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="232" y="118" width="96" height="40" rx="8" fill="#f7f5fb" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="280" y="136" font-family="ui-monospace,monospace" font-size="11" fill="#2d2640" text-anchor="middle">4 XOR rows</text>
+  <text x="280" y="150" font-family="system-ui,sans-serif" font-size="10" fill="#666" text-anchor="middle">trainStep batch</text>
+
+  <line x1="328" y1="138" x2="360" y2="138" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="362" y="118" width="120" height="40" rx="8" fill="#f7f5fb" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="422" y="143" font-family="ui-monospace,monospace" font-size="11" fill="#2d2640" text-anchor="middle">(y-t)^2 mean</text>
+
+  <line x1="482" y1="138" x2="514" y2="138" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="516" y="118" width="44" height="40" rx="8" fill="#e8e4f4" stroke="#6b5b8a" stroke-width="2"/>
+  <text x="538" y="144" font-family="ui-monospace,monospace" font-size="13" fill="#2d2640" text-anchor="middle">L</text>
+
+  <!-- divider -->
+  <line x1="16" y1="178" x2="704" y2="178" stroke="#e0dce8" stroke-width="1"/>
+
+  <text x="16" y="198" font-family="system-ui,sans-serif" font-size="11" fill="#666">Hidden and output layer (one neuron each) - not loss/MSE; side inputs below</text>
+
+  <!-- neuron chain -->
+  <rect x="16" y="212" width="56" height="36" rx="6" fill="#f7f5fb" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="44" y="235" font-family="ui-monospace,monospace" font-size="11" fill="#2d2640" text-anchor="middle">W</text>
+
+  <line x1="72" y1="230" x2="90" y2="230" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="92" y="212" width="64" height="36" rx="6" fill="#f7f5fb" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="124" y="235" font-family="ui-monospace,monospace" font-size="11" fill="#2d2640" text-anchor="middle">matmul</text>
+
+  <line x1="156" y1="230" x2="174" y2="230" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="176" y="212" width="44" height="36" rx="6" fill="#f7f5fb" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="198" y="235" font-family="ui-monospace,monospace" font-size="11" fill="#2d2640" text-anchor="middle">add</text>
+
+  <line x1="220" y1="230" x2="238" y2="230" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="240" y="212" width="32" height="36" rx="6" fill="#f0ecf8" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="256" y="235" font-family="ui-monospace,monospace" font-size="12" fill="#2d2640" text-anchor="middle">z</text>
+
+  <line x1="272" y1="230" x2="290" y2="230" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="292" y="212" width="56" height="36" rx="6" fill="#f7f5fb" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="320" y="235" font-family="ui-monospace,monospace" font-size="10" fill="#2d2640" text-anchor="middle">sigmoid</text>
+
+  <line x1="348" y1="230" x2="366" y2="230" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="368" y="212" width="32" height="36" rx="6" fill="#f0ecf8" stroke="#8b7ab8" stroke-width="1.5"/>
+  <text x="384" y="235" font-family="ui-monospace,monospace" font-size="12" fill="#2d2640" text-anchor="middle">s</text>
+
+  <line x1="400" y1="230" x2="418" y2="230" stroke="#5c4d7a" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="420" y="212" width="132" height="36" rx="6" fill="#ffffff" stroke="#b8adc9" stroke-width="1.5"/>
+  <text x="486" y="228" font-family="system-ui,sans-serif" font-size="10" fill="#5c4d7a" text-anchor="middle">hidden: s = h</text>
+  <text x="486" y="242" font-family="system-ui,sans-serif" font-size="10" fill="#5c4d7a" text-anchor="middle">output: s = y_hat</text>
+
+  <!-- side taps x/h and b -->
+  <rect x="76" y="258" width="96" height="34" rx="5" fill="#ffffff" stroke="#b8adc9" stroke-width="1" stroke-dasharray="3 2"/>
+  <text x="124" y="274" font-family="ui-monospace,monospace" font-size="9" fill="#5c4d7a" text-anchor="middle">hidden: x</text>
+  <text x="124" y="286" font-family="ui-monospace,monospace" font-size="9" fill="#5c4d7a" text-anchor="middle">output: h</text>
+  <path d="M124,258 L124,248" fill="none" stroke="#b8adc9" stroke-width="1.5" marker-end="url(#arrD)"/>
+
+  <rect x="176" y="262" width="44" height="26" rx="5" fill="#ffffff" stroke="#b8adc9" stroke-width="1" stroke-dasharray="3 2"/>
+  <text x="198" y="279" font-family="ui-monospace,monospace" font-size="10" fill="#5c4d7a" text-anchor="middle">b</text>
+  <path d="M198,262 L198,248" fill="none" stroke="#b8adc9" stroke-width="1.5" marker-end="url(#arrD)"/>
+</svg>
