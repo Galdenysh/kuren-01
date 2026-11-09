@@ -21,8 +21,14 @@ export interface LabeledBias {
   readonly code: string
 }
 
+/** Y-центр нейрона в полосе 120px: два нейрона — верх/низ; один — по середине между ними. */
 export function neuronCenterY(neuronIndex: number, count: number): number {
-  return 40 + neuronIndex * (120 / Math.max(count - 1, 1)) + 14
+  const bandTop = 40 + 14
+  const bandHeight = 120
+  if (count <= 1) {
+    return bandTop + bandHeight / 2
+  }
+  return bandTop + neuronIndex * (bandHeight / (count - 1))
 }
 
 /** x @ W₁: вес ребра «вход i → скрытый j» = W₁[i][j] */
