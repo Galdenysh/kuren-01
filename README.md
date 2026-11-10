@@ -26,10 +26,11 @@ npm install
 
 Агенты: корневой `AGENTS.md` — оглавление. Правила в `openspec/AGENTS.md`, `src/core/AGENTS.md`, `src/ui/AGENTS.md`.
 
-## Следующий срез
+## Срез XOR (готово)
 
-`openspec/changes/xor-training-lab`  
-В Cursor: `/opsx-apply`
+Архив: `openspec/changes/archive/2026-11-10-xor-training-lab`  
+Спеки: `openspec/specs/nn-core`, `openspec/specs/training-lab`  
+Следующий срез: `/opsx-propose`
 
 ## Плагин
 

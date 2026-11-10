@@ -26,7 +26,7 @@
 
 Перед кодом: `npx openspec list` и `npx openspec status --change <name>`.
 
-Следующий срез: `xor-training-lab` через `/opsx-apply` после ревью его `proposal.md` и `design.md`. Не начинать с React.
+Срез `xor-training-lab` заархивирован (`changes/archive/2026-11-10-xor-training-lab`). Новый срез — `/opsx-propose`; apply только после ревью `proposal.md` и `design.md`.
 
 ## Запрещено
 
