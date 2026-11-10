@@ -39,20 +39,15 @@ export class Trainer {
 
   /**
    * Один шаг обучения: forward по всем примерам → loss → backward → update весов.
-   * Веса в снимке уже новые; активации в снимке — с последней точки цикла (1,1).
+   * Веса и loss в снимке — после update; активации — с refresh (первый пример датасета).
    */
   trainStep(): NetworkSnapshot {
     const outputs: Tensor[] = []
-    let activations: NetworkSnapshot['activations'] | undefined
 
     // 1) Forward по всем 4 примерам XOR
     for (const sample of this.samples) {
-      const { output, activations: captured } = this.mlp.forwardRow(
-        sample.inputs,
-        true,
-      )
+      const { output } = this.mlp.forwardRow(sample.inputs, true)
       outputs.push(output)
-      activations = captured
     }
 
     // 2) Один loss на всех (среднеквадратичная ошибка)
@@ -70,9 +65,8 @@ export class Trainer {
       p.applyGrad(this.learningRate)
     }
 
-    if (activations) {
-      this.lastActivations = activations
-    }
+    // Loss и веса в снимке — уже после update (для графика и лога агента)
+    this.refreshForwardView()
 
     return this.mlp.snapshot(this.lastLoss, this.lastActivations)
   }
