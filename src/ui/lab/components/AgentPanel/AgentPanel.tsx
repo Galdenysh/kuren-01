@@ -1,5 +1,9 @@
 import { useState } from 'react'
-import type { AgentGoal, AgentLogEntry, RuleAgent } from '../../../../core/agent'
+import type {
+  AgentGoal,
+  AgentLogEntry,
+  RuleAgent,
+} from '../../../../core/agent'
 import { SCREEN_AGENT_GOAL } from '../../config/screenAgentGoal'
 import styles from './AgentPanel.module.css'
 
@@ -138,7 +142,9 @@ export function AgentPanel({ agent, onLossesApplied }: AgentPanelProps) {
                 />
               </label>
               <label className={styles.field}>
-                <span className={styles.fieldLabel}>Бюджет шагов (maxSteps)</span>
+                <span className={styles.fieldLabel}>
+                  Бюджет шагов (maxSteps)
+                </span>
                 <input
                   className={styles.input}
                   type="number"

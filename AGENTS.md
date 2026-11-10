@@ -23,4 +23,4 @@ OpenSpec-skills (вызов `/opsx-*`):
 
 Индекс обязан покрывать все вложенные `AGENTS.md` и `SKILL.md`: `npm run agents:check`.
 
-Активный change — `xor-training-agent` (apply). Архив `xor-training-lab`: `2026-11-10`.
+Активных change нет. Архив: `xor-training-lab` (2026-11-10), `xor-training-agent`, `training-ui-spec-sync` (2026-11-11). Следующий срез — `/opsx-propose`.

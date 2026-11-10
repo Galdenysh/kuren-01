@@ -29,9 +29,7 @@ export default function App() {
   const resetNetwork = () => {
     const nextTrainer = new Trainer(Mlp.xorMlp(LAB_SEED), XOR_DATASET)
     setTrainer(nextTrainer)
-    setAgent(
-      new RuleAgent(SCREEN_AGENT_GOAL, createTrainerTools(nextTrainer)),
-    )
+    setAgent(new RuleAgent(SCREEN_AGENT_GOAL, createTrainerTools(nextTrainer)))
     setTrainRevision(0)
     setLossHistory([nextTrainer.forwardSnapshot().loss])
     setSessionId((id) => id + 1)

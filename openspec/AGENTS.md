@@ -26,7 +26,7 @@
 
 Перед кодом: `npx openspec list` и `npx openspec status --change <name>`.
 
-Активный change — `xor-training-agent` (`changes/xor-training-agent`). Apply после ревью `proposal.md` и `design.md`. Архив `xor-training-lab`: `changes/archive/2026-11-10-xor-training-lab`.
+Срезы `xor-training-agent` и `training-ui-spec-sync` заархивированы (`changes/archive/2026-11-11-*`). Активных change нет. Новый срез — `/opsx-propose`.
 
 ## Запрещено
 

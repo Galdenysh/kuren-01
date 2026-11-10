@@ -3,7 +3,7 @@ schema: spec-driven
 context: |
   Root AGENTS.md is an index. Read the nested AGENTS.md for the area you touch
   (openspec/, src/core/, src/ui/, .cursor/). Do not copy those files into artifacts.
-  Active change: xor-training-agent (apply). xor-training-lab archived 2026-11-10.
+  No active change. training-ui-spec-sync and xor-training-agent archived 2026-11-11. xor-training-lab archived 2026-11-10.
 
 rules:
   proposal:
