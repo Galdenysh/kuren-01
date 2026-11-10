@@ -10,10 +10,10 @@
 
 ## 2. Ядро (green)
 
-- [ ] 2.1 Реализовать `decideRule` и типы цели в `src/core/agent`, без импорта `src/core/nn`. Проверка: `policy.test.ts` зелёный, `agent.test.ts` всё ещё красный.
-- [ ] 2.2 Реализовать `createTrainerTools` и `RuleAgent` (`cycle`, `run`) по design.md: инструменты только `forwardSnapshot` и `trainStep` с публичного индекса `src/core/nn`. Проверка: `agent.test.ts` и `policy.test.ts` зелёные, `src/core/nn/xor.test.ts` зелёный.
-- [ ] 2.3 Дописать `src/core/agent/README.md` по-русски: цикл цель → снимок → действие → инструмент и почему это не языковая модель. Проверка: файл описывает этот цикл, идентификаторы в коде английские.
-- [ ] 2.4 Прогнать границу импортов. Проверка: `npm run core:imports` зелёный, в `src/core/agent` нет `react`, `src/ui`, `tensor.ts`.
+- [x] 2.1 Реализовать `decideRule` и типы цели в `src/core/agent`, без импорта `src/core/nn`. Проверка: `policy.test.ts` зелёный, `agent.test.ts` всё ещё красный.
+- [x] 2.2 Реализовать `createTrainerTools` и `RuleAgent` (`cycle`, `run`) по design.md: инструменты только `forwardSnapshot` и `trainStep` с публичного индекса `src/core/nn`. Проверка: `agent.test.ts` и `policy.test.ts` зелёные, `src/core/nn/xor.test.ts` зелёный.
+- [x] 2.3 Дописать `src/core/agent/README.md` по-русски: цикл цель → снимок → действие → инструмент и почему это не языковая модель. Проверка: файл описывает этот цикл, идентификаторы в коде английские.
+- [x] 2.4 Прогнать границу импортов. Проверка: `npm run core:imports` зелёный, в `src/core/agent` нет `react`, `src/ui`, `tensor.ts`.
 
 ## 3. Лаборатория и лог
 
