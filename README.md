@@ -1,37 +1,45 @@
 # Kuren-01
 
-Учебная нейросеть на TypeScript + React. Практика, чтобы увидеть, как сеть учится, а не продукт «вместо GPT».
+Учебная нейросеть на TypeScript + React: смотришь, как MLP `2 → 2 → 1` учится XOR, и как простой **агент по правилу** решает «учить или стоп» — без языковой модели.
 
-Каркас готов. Модель ещё не написана. План — в OpenSpec.
+Математика в `src/core`, экран в `src/ui`. Отдельного бэкенда нет.
 
 ## Запуск
 
-Нужен Node.js **>= 20.19** (в `.nvmrc` стоит 22). Vite 8 на 18 не стартует. Отдельного бэкенда нет: сеть учится в браузере в `src/core`, React это рисует.
-
-В Cursor: **Terminal → Run Task… → Dev** (или `⇧⌘B`). Агенты сервер сами не поднимают.
-
-Другие задачи: Test, Lint, Format, Build, Verify.
+Нужен Node.js **>= 20.19** (см. `.nvmrc`, обычно 22).
 
 ```bash
 npm install
+npm run verify   # тесты, lint, build
 ```
 
-Проверка каркаса: `npm run verify`. Dev — Run Task, не агентом.
+В Cursor: **Terminal → Run Task… → Dev** (`⇧⌘B`). Лабораторию открой в браузере после старта dev.
 
 ## Слои
 
-- `src/core/nn` — математика сети, без React
-- `src/ui/lab` — лаборатория, только рисует снимок
-- `src/core/agent` — позже, отдельным срезом
+| Путь | Назначение |
+|------|------------|
+| `src/core/nn` | Тензор, autograd, MLP, trainer, снимок |
+| `src/core/agent` | `RuleAgent`, правило, инструменты trainer |
+| `src/ui/lab` | Лаборатория и панель агента (React) |
 
-Агенты: корневой `AGENTS.md` — оглавление. Правила в `openspec/AGENTS.md`, `src/core/AGENTS.md`, `src/ui/AGENTS.md`.
+Правила: корневой [`AGENTS.md`](AGENTS.md) — индекс; детали в `openspec/AGENTS.md`, `src/core/AGENTS.md`, `src/ui/AGENTS.md`.
 
-## Срез XOR (готово)
+## На экране
 
-Архив: `openspec/changes/archive/2026-11-10-xor-training-lab`  
-Спеки: `openspec/specs/nn-core`, `openspec/specs/training-lab`  
-Следующий срез: `/opsx-propose`
+- Заголовок, **агент** (шаг / серия / авто до цели, лог и настройки цели).
+- Схема сети, график loss, веса, выбор входа XOR, **сброс сети** (seed 42).
 
-## Плагин
+## OpenSpec
+
+Живые спеки: `openspec/specs/nn-core`, `training-lab`, `training-agent`.
+
+В планировании: [`gh-pages-deploy`](openspec/changes/gh-pages-deploy/) — GitHub Pages и CI на `main`.
+
+Архив срезов: `openspec/changes/archive/` (`xor-training-lab`, `xor-training-agent`, `training-ui-spec-sync`, …).
+
+Новый срез: `/opsx-propose`, применение после ревью `proposal.md` и `design.md`.
+
+## Плагин (опционально)
 
 Cursor Marketplace → **pstack**. По желанию **teaching**.
