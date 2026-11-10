@@ -1,20 +1,13 @@
-import type { NetworkSnapshot } from '../../core/nn'
-import { LAYER_X, neuronCenterY } from './networkLayout'
+import type { NetworkSnapshot } from '../../../../core/nn'
+import { LAYER_X, neuronCenterY } from '../../utils/networkLayout'
 import styles from './NetworkGraph.module.css'
 
 interface NetworkGraphProps {
   readonly snapshot: NetworkSnapshot
-  readonly expectedTarget?: number
 }
 
-export function NetworkGraph({ snapshot, expectedTarget }: NetworkGraphProps) {
+export function NetworkGraph({ snapshot }: NetworkGraphProps) {
   const input = snapshot.activations.input
-  const outputProb = snapshot.activations.output[0] ?? 0
-  const predicted = outputProb >= 0.5 ? 1 : 0
-  const targetLine =
-    expectedTarget === undefined
-      ? null
-      : `Цель XOR: ${expectedTarget} · выход ${outputProb.toFixed(2)} (класс ${predicted})`
   const { hidden, output } = snapshot.activations
   const neurons = [
     { layer: 0, values: input },
@@ -24,16 +17,12 @@ export function NetworkGraph({ snapshot, expectedTarget }: NetworkGraphProps) {
 
   return (
     <figure className={styles.figure}>
-      <figcaption className={styles.caption}>
-        Граф 2 → 2 → 1 · вход ({input[0]}, {input[1]})
-      </figcaption>
-      {targetLine ? <p className={styles.meta}>{targetLine}</p> : null}
-      <p className={styles.hint}>Активации в кружках; веса — в таблице ниже.</p>
+      <figcaption className={styles.caption}>Схема 2 → 2 → 1</figcaption>
       <svg
         className={styles.svg}
         viewBox="0 0 360 200"
         role="img"
-        aria-label="Граф нейросети с активациями"
+        aria-label={`Схема нейросети, вход (${input[0]}, ${input[1]})`}
       >
         {neurons.map(({ layer, values }, layerIndex) =>
           values.map((value, row) => {

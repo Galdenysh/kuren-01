@@ -1,0 +1,49 @@
+# Spec Delta
+
+## ADDED Requirements
+
+### Requirement: Network reset
+
+Лаборатория MUST дать сброс сети к начальным весам с фиксированным seed, общему trainer, одной точке loss на графике и новому экземпляру агента с начальной целью.
+
+#### Scenario: Reset after training
+
+- **WHEN** пользователь нажимает «Сброс сети» после нескольких шагов агента
+- **THEN** loss и веса как у необученной сети с тем же seed, график loss с одной стартовой точкой, лог агента пуст
+
+### Requirement: Lab refresh from agent training
+
+Лаборатория MUST обновлять граф схемы, таблицу весов и график loss, когда агент выдал шаг обучения, без прямого вызова train с кнопок лаборатории.
+
+#### Scenario: Loss chart from agent
+
+- **WHEN** агент завершил цикл с действием обучения
+- **THEN** график loss получает новую точку с loss после шага
+
+## MODIFIED Requirements
+
+### Requirement: Lab shows live network
+
+Лаборатория MUST показать граф MLP `2 → 2 → 1` и активации выбранной пары входа после forward без смены весов (`probeSnapshot`).
+
+#### Scenario: Activations after a step
+
+- **WHEN** агент сделал шаг обучения, выбрана пара входа на графе
+- **THEN** схема показывает активации этой пары с обновлёнными весами
+
+### Requirement: Lab shows weights and loss
+
+Лаборатория MUST показать веса рёбер или матриц и график loss по шагам обучения (агент или сброс).
+
+#### Scenario: Loss chart grows
+
+- **WHEN** агент сделал несколько шагов обучения
+- **THEN** график добавляет точку loss на каждый шаг обучения
+
+## REMOVED Requirements
+
+### Requirement: Manual stepping
+
+**Reason**: Обучение централизовано в панели агента; дублирующие кнопки убрали.
+
+**Migration**: Использовать «Шаг агента», «Серия циклов (50)» или «Авто до цели».

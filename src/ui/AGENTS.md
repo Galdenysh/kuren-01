@@ -4,7 +4,7 @@ React только рисует снимок из `src/core`. Математик
 
 ```
 src/ui/app       оболочка, App, SlotCard, globals.css, *.module.css
-src/ui/lab       NetworkGraph, LossChart, WeightView, TrainingLab — named exports
+src/ui/lab       components/, config/, types/, utils/; публичный API — index.ts
 ```
 
 ## Правила

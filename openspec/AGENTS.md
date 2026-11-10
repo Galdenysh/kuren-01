@@ -26,7 +26,7 @@
 
 Перед кодом: `npx openspec list` и `npx openspec status --change <name>`.
 
-Срез `xor-training-lab` заархивирован (`changes/archive/2026-11-10-xor-training-lab`). Новый срез — `/opsx-propose`; apply только после ревью `proposal.md` и `design.md`.
+Срезы `xor-training-agent` и `training-ui-spec-sync` заархивированы (`changes/archive/2026-11-11-*`). Активных change нет. Новый срез — `/opsx-propose`.
 
 ## Запрещено
 

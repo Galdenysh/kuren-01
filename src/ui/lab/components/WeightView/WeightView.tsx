@@ -1,9 +1,6 @@
-import type { NetworkSnapshot } from '../../core/nn'
-import {
-  listWeightEdges,
-  type LabeledBias,
-  type LabeledEdge,
-} from './networkLayout'
+import type { NetworkSnapshot } from '../../../../core/nn'
+import { listWeightEdges } from '../../utils/networkLayout'
+import type { LabeledBias, LabeledEdge } from '../../types/networkLayout'
 import styles from './WeightView.module.css'
 
 interface WeightViewProps {

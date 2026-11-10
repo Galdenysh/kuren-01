@@ -1,25 +1,13 @@
-import type { NetworkSnapshot } from '../../core/nn'
+import type { NetworkSnapshot } from '../../../core/nn'
+import type { LabeledBias, LabeledEdge } from '../types/networkLayout'
+
+export type { LabeledBias, LabeledEdge } from '../types/networkLayout'
 
 export const LAYER_X = [40, 180, 320] as const
 
 const INPUT_LABELS = ['вход 0 (верх)', 'вход 1 (низ)'] as const
 const HIDDEN_LABELS = ['скрытый 0 (верх)', 'скрытый 1 (низ)'] as const
 const OUTPUT_LABEL = 'выход'
-
-export interface LabeledEdge {
-  readonly id: string
-  readonly fromLabel: string
-  readonly toLabel: string
-  readonly weight: number
-  readonly code: string
-}
-
-export interface LabeledBias {
-  readonly id: string
-  readonly neuronLabel: string
-  readonly value: number
-  readonly code: string
-}
 
 /** Y-центр нейрона в полосе 120px: два нейрона — верх/низ; один — по середине между ними. */
 export function neuronCenterY(neuronIndex: number, count: number): number {

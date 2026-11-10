@@ -1,6 +1,7 @@
 # nn-core Specification
 
 ## Purpose
+
 Учебное ядро сети: тензор, autograd, слои и trainer, которые можно открыть и проследить по числам без внешних ML-рантаймов.
 
 ## Requirements

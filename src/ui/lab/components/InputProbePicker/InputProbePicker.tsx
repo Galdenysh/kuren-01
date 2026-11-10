@@ -1,4 +1,4 @@
-import { XOR_DATASET } from '../../core/nn'
+import { XOR_DATASET } from '../../../../core/nn'
 import styles from './InputProbePicker.module.css'
 
 interface InputProbePickerProps {
