@@ -56,10 +56,31 @@
   filter: brightness(1.08);
 }
 
+.lossRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
 .lossNow {
   font-family: var(--mono);
   font-size: 14px;
   margin: 0;
+}
+
+.resetButton {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text-h);
+}
+
+.resetButton:hover {
+  filter: brightness(1.08);
 }
 
 .lossNow strong {

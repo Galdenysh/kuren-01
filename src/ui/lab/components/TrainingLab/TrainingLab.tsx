@@ -10,12 +10,14 @@ export type TrainingLabProps = {
   trainer: Trainer
   lossHistory: number[]
   trainRevision: number
+  onResetNetwork: () => void
 }
 
 export function TrainingLab({
   trainer,
   lossHistory,
   trainRevision,
+  onResetNetwork,
 }: TrainingLabProps) {
   const [probeIndex, setProbeIndex] = useState(0)
   const probeInputs = XOR_DATASET[probeIndex]!.inputs
@@ -31,9 +33,18 @@ export function TrainingLab({
 
   return (
     <div className={styles.lab}>
-      <p className={styles.lossNow}>
-        Loss: <strong>{snapshot.loss.toFixed(4)}</strong>
-      </p>
+      <div className={styles.lossRow}>
+        <p className={styles.lossNow}>
+          Loss: <strong>{snapshot.loss.toFixed(4)}</strong>
+        </p>
+        <button
+          type="button"
+          className={styles.resetButton}
+          onClick={onResetNetwork}
+        >
+          Сброс сети
+        </button>
+      </div>
 
       <InputProbePicker selectedIndex={probeIndex} onSelect={onProbeSelect} />
 

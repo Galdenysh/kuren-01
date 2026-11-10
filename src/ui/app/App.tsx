@@ -7,12 +7,13 @@ import styles from './App.module.css'
 const LAB_SEED = 42
 
 export default function App() {
-  const [trainer] = useState(
+  const [trainer, setTrainer] = useState(
     () => new Trainer(Mlp.xorMlp(LAB_SEED), XOR_DATASET),
   )
-  const [agent] = useState(
+  const [agent, setAgent] = useState(
     () => new RuleAgent(SCREEN_AGENT_GOAL, createTrainerTools(trainer)),
   )
+  const [sessionId, setSessionId] = useState(0)
 
   const [trainRevision, setTrainRevision] = useState(0)
   const [lossHistory, setLossHistory] = useState<number[]>(() => [
@@ -25,6 +26,17 @@ export default function App() {
     setLossHistory((prev) => [...prev, ...losses])
   }
 
+  const resetNetwork = () => {
+    const nextTrainer = new Trainer(Mlp.xorMlp(LAB_SEED), XOR_DATASET)
+    setTrainer(nextTrainer)
+    setAgent(
+      new RuleAgent(SCREEN_AGENT_GOAL, createTrainerTools(nextTrainer)),
+    )
+    setTrainRevision(0)
+    setLossHistory([nextTrainer.forwardSnapshot().loss])
+    setSessionId((id) => id + 1)
+  }
+
   return (
     <main className={styles.shell}>
       <div className={styles.stack}>
@@ -35,11 +47,16 @@ export default function App() {
             в ядре и отображаются без подставных чисел.
           </p>
         </header>
-        <AgentPanel agent={agent} onLossesApplied={appendLosses} />
+        <AgentPanel
+          key={sessionId}
+          agent={agent}
+          onLossesApplied={appendLosses}
+        />
         <TrainingLab
           trainer={trainer}
           lossHistory={lossHistory}
           trainRevision={trainRevision}
+          onResetNetwork={resetNetwork}
         />
       </div>
     </main>
