@@ -86,10 +86,7 @@ export function AgentPanel({ agent, onLossesApplied }: AgentPanelProps) {
   }
 
   return (
-    <section
-      className={expanded ? styles.panel : styles.panelCollapsed}
-      aria-labelledby="agent-panel-title"
-    >
+    <section className={styles.panel} aria-labelledby="agent-panel-title">
       <div className={styles.titleRow}>
         <h2 id="agent-panel-title" className={styles.title}>
           Агент по правилу
