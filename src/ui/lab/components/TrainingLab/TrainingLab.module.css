@@ -59,15 +59,37 @@
 .lossNow {
   font-family: var(--mono);
   font-size: 14px;
-  margin-left: auto;
+  margin: 0;
 }
 
 .lossNow strong {
   color: var(--text-h);
 }
 
+.probeContext {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.probeMeta {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--text-h);
+  line-height: 1.45;
+}
+
+.probeHint {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.45;
+}
+
 .panels {
   display: grid;
   gap: 24px;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: start;
 }

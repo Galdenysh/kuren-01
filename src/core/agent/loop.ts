@@ -8,12 +8,17 @@ import type { AgentGoal, AgentLogEntry, TrainerTools } from './types'
 export class RuleAgent {
   private trainCount = 0
   private nextIndex = 0
-  private readonly goal: AgentGoal
+  private goal: AgentGoal
   private readonly tools: TrainerTools
 
   constructor(goal: AgentGoal, tools: TrainerTools) {
     this.goal = goal
     this.tools = tools
+  }
+
+  /** Обновить цель с экрана; счётчик шагов агента не сбрасывается. */
+  setGoal(goal: AgentGoal): void {
+    this.goal = goal
   }
 
   /** Один цикл; при стопе инструмент обучения не вызывается. */

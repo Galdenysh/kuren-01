@@ -1,6 +1,7 @@
 # training-lab Specification
 
 ## Purpose
+
 Экран лаборатории, где видно, как крошечная сеть учит XOR: слои, активации, веса и график loss.
 
 ## Requirements

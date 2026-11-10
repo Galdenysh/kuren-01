@@ -28,13 +28,19 @@ export default function App() {
   return (
     <main className={styles.shell}>
       <div className={styles.stack}>
+        <header className={styles.pageHeader}>
+          <h1 className={styles.pageTitle}>Лаборатория XOR</h1>
+          <p className={styles.pageLead}>
+            Сеть 2→2→1 учится на XOR. Схема сети, ошибка (loss) и веса считаются
+            в ядре и отображаются без подставных чисел.
+          </p>
+        </header>
+        <AgentPanel agent={agent} onLossesApplied={appendLosses} />
         <TrainingLab
           trainer={trainer}
           lossHistory={lossHistory}
           trainRevision={trainRevision}
-          onManualSteps={appendLosses}
         />
-        <AgentPanel agent={agent} onTrainApplied={(loss) => appendLosses([loss])} />
       </div>
     </main>
   )

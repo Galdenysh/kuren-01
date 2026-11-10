@@ -1,4 +1,5 @@
-.panel {
+.panel,
+.panelCollapsed {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -8,10 +9,17 @@
   background: var(--card);
 }
 
-.header {
+.panelCollapsed {
+  gap: 12px;
+  padding: 16px 20px;
+}
+
+.titleRow {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .title {
@@ -22,10 +30,18 @@
   letter-spacing: -0.02em;
 }
 
-.lead {
-  max-width: 52ch;
-  line-height: 1.5;
-  font-size: 16px;
+.toggle {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.toggle:hover {
+  filter: brightness(1.08);
 }
 
 .toolbar {
@@ -58,6 +74,60 @@
 .button:hover,
 .buttonSecondary:hover {
   filter: brightness(1.08);
+}
+
+.expanded {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.settings {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.settingsLegend {
+  padding: 0;
+  margin-bottom: 10px;
+  color: var(--text-h);
+  font-weight: 500;
+}
+
+.settingsGrid {
+  display: grid;
+  gap: 12px 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldLabel {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.input {
+  font: inherit;
+  font-family: var(--mono);
+  font-size: 15px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.settingsHint {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.45;
+  max-width: 52ch;
 }
 
 .log {

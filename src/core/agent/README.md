@@ -13,11 +13,11 @@
 
 ## Файлы
 
-| Файл       | Роль                                      |
-| ---------- | ----------------------------------------- |
-| `types.ts` | цель, инструменты, запись лога            |
-| `policy.ts`| правило без импорта `src/core/nn`         |
-| `tools.ts` | `snapshot` / `trainStep` через `Trainer`  |
-| `loop.ts`  | `RuleAgent.cycle` / `run`                 |
+| Файл        | Роль                                     |
+| ----------- | ---------------------------------------- |
+| `types.ts`  | цель, инструменты, запись лога           |
+| `policy.ts` | правило без импорта `src/core/nn`        |
+| `tools.ts`  | `snapshot` / `trainStep` через `Trainer` |
+| `loop.ts`   | `RuleAgent.cycle` / `run`                |
 
 Правила области: [../AGENTS.md](../AGENTS.md).

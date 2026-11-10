@@ -6,35 +6,24 @@ import { NetworkGraph } from '../NetworkGraph/NetworkGraph'
 import styles from './TrainingLab.module.css'
 import { WeightView } from '../WeightView/WeightView'
 
-const BURST_STEPS = 50
-
 export type TrainingLabProps = {
   trainer: Trainer
   lossHistory: number[]
   trainRevision: number
-  onManualSteps: (losses: number[]) => void
 }
 
 export function TrainingLab({
   trainer,
   lossHistory,
   trainRevision,
-  onManualSteps,
 }: TrainingLabProps) {
   const [probeIndex, setProbeIndex] = useState(0)
   const probeInputs = XOR_DATASET[probeIndex]!.inputs
   const probeTarget = XOR_DATASET[probeIndex]!.target
 
   const snapshot = trainer.probeSnapshot(probeInputs)
-
-  const runSteps = (count: number) => {
-    const newLosses: number[] = []
-    for (let i = 0; i < count; i++) {
-      const step = trainer.trainStep()
-      newLosses.push(step.loss)
-    }
-    onManualSteps(newLosses)
-  }
+  const outputProb = snapshot.activations.output[0] ?? 0
+  const predicted = outputProb >= 0.5 ? 1 : 0
 
   const onProbeSelect = (index: number) => {
     setProbeIndex(index)
@@ -42,41 +31,27 @@ export function TrainingLab({
 
   return (
     <div className={styles.lab}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>Лаборатория XOR</h1>
-        <p className={styles.lead}>
-          MLP 2→2→1: один шаг — forward, backward, обновление весов. Числа из
-          снимка ядра, без фейка.
-        </p>
-      </header>
-
-      <div className={styles.toolbar}>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() => runSteps(1)}
-        >
-          Шаг
-        </button>
-        <button
-          type="button"
-          className={styles.buttonSecondary}
-          onClick={() => runSteps(BURST_STEPS)}
-        >
-          Серия шагов ({BURST_STEPS})
-        </button>
-        <p className={styles.lossNow}>
-          Loss: <strong>{snapshot.loss.toFixed(4)}</strong>
-        </p>
-      </div>
+      <p className={styles.lossNow}>
+        Loss: <strong>{snapshot.loss.toFixed(4)}</strong>
+      </p>
 
       <InputProbePicker selectedIndex={probeIndex} onSelect={onProbeSelect} />
+
+      <div className={styles.probeContext}>
+        <p className={styles.probeMeta}>
+          Вход на схеме ({probeInputs[0]}, {probeInputs[1]}). Цель XOR:{' '}
+          {probeTarget}. Выход {outputProb.toFixed(2)}, класс (предсказание){' '}
+          {predicted}.
+        </p>
+        <p className={styles.probeHint}>
+          Активации в кружках. Веса в таблице ниже.
+        </p>
+      </div>
 
       <div className={styles.panels}>
         <NetworkGraph
           key={`${trainRevision}-${probeIndex}`}
           snapshot={snapshot}
-          expectedTarget={probeTarget}
         />
         <LossChart losses={lossHistory} />
       </div>

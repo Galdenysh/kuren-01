@@ -40,9 +40,9 @@ describe('RuleAgent на реальном Trainer', () => {
 
     expect(entry.action).toBe('stop')
     expect(entry.stopReason).toBe('goal_reached')
-    expect(weightsEqual(trainer.forwardSnapshot().weights, before.weights)).toBe(
-      true,
-    )
+    expect(
+      weightsEqual(trainer.forwardSnapshot().weights, before.weights),
+    ).toBe(true)
   })
 
   it('при maxLoss: 0 и maxSteps: 2 — ровно два train и стоп step_limit', () => {
@@ -63,9 +63,9 @@ describe('RuleAgent на реальном Trainer', () => {
     expect(trains).toHaveLength(2)
     expect(stops).toHaveLength(1)
     expect(stops[0]?.stopReason).toBe('step_limit')
-    expect(weightsEqual(trainer.forwardSnapshot().weights, expectedWeights)).toBe(
-      true,
-    )
+    expect(
+      weightsEqual(trainer.forwardSnapshot().weights, expectedWeights),
+    ).toBe(true)
   })
 
   it('на цикле обучения снимок наблюдения снят до trainStep', () => {
@@ -82,9 +82,9 @@ describe('RuleAgent на реальном Trainer', () => {
     expect(entry.observation.loss).toBe(pre.loss)
     expect(entry.observation.weights).toEqual(pre.weights)
     expect(entry.observation.activations).toEqual(pre.activations)
-    expect(
-      weightsEqual(trainer.forwardSnapshot().weights, pre.weights),
-    ).toBe(false)
+    expect(weightsEqual(trainer.forwardSnapshot().weights, pre.weights)).toBe(
+      false,
+    )
   })
 
   it('лог run — plain data, без Tensor', () => {
