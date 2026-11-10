@@ -8,7 +8,7 @@
 
 ## Деплой
 
-После merge в `main` workflow **Deploy** собирает сайт и выкладывает его на Pages. Один раз в репозитории: **Settings → Pages → Build and deployment → Source: GitHub Actions**. URL стенда: `https://galdenysh.github.io/kuren-01/`. На pull request в `main` workflow **Verify** гоняет `npm run verify` без публикации.
+Стенд на GitHub Pages, деплой через GitHub Actions: после merge в `main` workflow **Deploy** обновляет [https://galdenysh.github.io/kuren-01/](https://galdenysh.github.io/kuren-01/). На pull request в `main` workflow **Verify** гоняет `npm run verify` без публикации.
 
 ## Запуск
 
@@ -38,9 +38,9 @@ npm run verify   # тесты, lint, build
 
 ## OpenSpec
 
-Живые спеки: `openspec/specs/nn-core`, `training-lab`, `training-agent`.
+Живые спеки: `openspec/specs/nn-core`, `training-lab`, `training-agent`, `deployment`.
 
-Архив срезов: `openspec/changes/archive/` (`xor-training-lab`, `xor-training-agent`, `training-ui-spec-sync`, …).
+Архив срезов: `openspec/changes/archive/` (`xor-training-lab`, `xor-training-agent`, `training-ui-spec-sync`, `gh-pages-deploy`, …).
 
 Новый срез: `/opsx-propose`, применение после ревью `proposal.md` и `design.md`.
 
