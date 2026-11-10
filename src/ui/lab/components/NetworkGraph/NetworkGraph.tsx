@@ -1,5 +1,5 @@
-import type { NetworkSnapshot } from '../../core/nn'
-import { LAYER_X, neuronCenterY } from './networkLayout'
+import type { NetworkSnapshot } from '../../../../core/nn'
+import { LAYER_X, neuronCenterY } from '../../utils/networkLayout'
 import styles from './NetworkGraph.module.css'
 
 interface NetworkGraphProps {
