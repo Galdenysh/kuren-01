@@ -16,8 +16,8 @@
 
 ## 3. Реализация языковой модели
 
-- [ ] 3.1 Реализовать корпус, окно one-hot, скрытый sigmoid, softmax и кросс-энтропию в `src/core/lm`. Импорт тензора только из `src/core/tensor`. Проверка: тесты из раздела 2 зелёные; в `lm` нет импорта `src/core/nn`, в `nn` нет импорта `src/core/lm`.
-- [ ] 3.2 Дописать `tensor` и `lm` в дерево и правила `src/core/AGENTS.md`: тесты тензора — `src/core/tensor/*.test.ts`, не `src/core/nn/*.test.ts`. Запрет языковой модели в срезе XOR оставить. В корневой таблице README добавить строку `src/core/lm`. Проверка: абзац называет `tensor`, `nn`, `agent` и `lm`; `npm run agents:check` зелёный.
+- [x] 3.1 Реализовать корпус, окно one-hot, скрытый sigmoid, softmax и кросс-энтропию в `src/core/lm`. Импорт тензора только из `src/core/tensor`. Проверка: тесты из раздела 2 зелёные; в `lm` нет импорта `src/core/nn`, в `nn` нет импорта `src/core/lm`.
+- [x] 3.2 Дописать `tensor` и `lm` в дерево и правила `src/core/AGENTS.md`: тесты тензора — `src/core/tensor/*.test.ts`, не `src/core/nn/*.test.ts`. Запрет языковой модели в срезе XOR оставить. В корневой таблице README добавить строку `src/core/lm`. Проверка: абзац называет `tensor`, `nn`, `agent` и `lm`; `npm run agents:check` зелёный.
 
 ## 4. Done-gate
 
