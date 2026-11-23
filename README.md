@@ -1,6 +1,6 @@
 # Kuren-01
 
-Учебная нейросеть на TypeScript + React: смотришь, как MLP `2 → 2 → 1` учится XOR, и как простой **агент по правилу** решает «учить или стоп» — без языковой модели.
+Учебная нейросеть на TypeScript и React. На экране XOR сеть `2 → 2 → 1` учит XOR, а **агент по правилу** решает «учить или стоп». На экране «Символы» маленькая модель заучивает короткий текст и дописывает хвост.
 
 **<a href="https://galdenysh.github.io/kuren-01/" target="_blank" rel="noopener noreferrer">Стенд</a>** — лаборатория в браузере (GitHub Pages).
 
@@ -29,20 +29,31 @@ npm run verify   # тесты, lint, build
 | `src/core/nn`     | MLP, trainer, снимок XOR                  |
 | `src/core/agent`  | `RuleAgent`, правило, инструменты trainer |
 | `src/core/lm`     | Символьная модель: короткий текст         |
-| `src/ui/lab`      | Лаборатория и панель агента (React)       |
+| `src/ui/app`      | Оболочка и переключатель экранов          |
+| `src/ui/lab`      | Лаборатория XOR и панель агента           |
+| `src/ui/char`     | Экран символьной модели                   |
 
 Правила: корневой [`AGENTS.md`](AGENTS.md) — индекс; детали в `openspec/AGENTS.md`, `src/core/AGENTS.md`, `src/ui/AGENTS.md`.
 
 ## На экране
 
-- Заголовок, **агент** (шаг / серия / авто до цели, лог и настройки цели).
-- Схема сети, график loss, веса, выбор входа XOR, **сброс сети** (seed 42).
+Переключатель **XOR** / **Символы**. При открытии виден XOR. Лаборатория остаётся смонтированной, поэтому возврат сохраняет веса, график, лог агента и выбранный вход.
+
+**XOR**
+
+- **Агент**: шаг, серия, авто до цели, лог и настройки цели.
+- Схема сети, график loss, веса, выбор входа, **сброс сети** (seed 42).
+
+**Символы**
+
+- Учебный текст можно править. Поле «Начало», число ошибки и хвост из снимка.
+- **Шаг**, **Обучить** (4000 шагов) и **сброс** весов. Сброс оставляет текст в поле. Если окон нет, шаг и обучение недоступны.
 
 ## OpenSpec
 
-Живые спеки: `openspec/specs/nn-core`, `char-lm`, `training-lab`, `training-agent`, `deployment`.
+Живые спеки: `openspec/specs/nn-core`, `char-lm`, `char-lab`, `training-lab`, `training-agent`, `project-layout`, `agent-workflow`, `deployment`.
 
-Архив срезов: `openspec/changes/archive/` (`xor-training-lab`, `xor-training-agent`, `training-ui-spec-sync`, `gh-pages-deploy`, `char-lm`, …).
+Архив срезов: `openspec/changes/archive/` (`xor-training-lab`, `xor-training-agent`, `training-ui-spec-sync`, `gh-pages-deploy`, `char-lm`, `char-lab`, `editable-corpus`, …).
 
 Новый срез: `/opsx-propose`, применение после ревью `proposal.md` и `design.md`.
 
