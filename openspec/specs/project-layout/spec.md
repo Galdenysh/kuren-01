@@ -31,8 +31,13 @@ React-код MUST жить в `src/ui` и MUST получать состояни
 
 #### Scenario: Lab screen
 
-- **WHEN** агент рисует граф, веса или loss
+- **WHEN** агент рисует граф XOR, таблицу весов XOR или график loss XOR
 - **THEN** код лежит в `src/ui/lab` и импортирует только публичный API `src/core`
+
+#### Scenario: Character screen loss
+
+- **WHEN** агент рисует число ошибки и хвост символьного снимка
+- **THEN** код лежит в `src/ui/char` и импортирует только публичный API `src/core/lm`
 
 ### Requirement: Import direction
 

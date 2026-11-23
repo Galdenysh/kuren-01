@@ -5,7 +5,10 @@ React только рисует снимок из `src/core`. Математик
 ```
 src/ui/app       оболочка, App, SlotCard, globals.css, *.module.css
 src/ui/lab       components/, config/, types/, utils/; публичный API — index.ts
+src/ui/char      экран символьной модели; публичный API — index.ts
 ```
+
+Оболочка `app` переключает лабораторию `lab` и экран `char`. `char` рисует снимок символьной модели и не импортирует `lab`.
 
 ## Правила
 
