@@ -32,6 +32,10 @@
 }
 
 .corpus {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 7.5em;
   margin: 0;
   padding: 16px 18px;
   border: 1px solid var(--border);
@@ -42,11 +46,35 @@
   font-size: 16px;
   line-height: 1.6;
   white-space: pre-wrap;
+  resize: vertical;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.block > .label {
+  margin-bottom: 0;
 }
 
 .field {
   display: flex;
   flex-direction: column;
+}
+
+.hint {
+  margin: 0;
+  padding-left: 1.2em;
+  max-width: 68ch;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.hint li + li {
+  margin-top: 4px;
 }
 
 .input {

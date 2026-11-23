@@ -35,8 +35,8 @@ export class CharModel {
   private cursor = 0
   private lastLoss = 0
 
-  private constructor(seed: number) {
-    const corpus = readCorpus()
+  private constructor(seed: number, text?: string) {
+    const corpus = text ?? readCorpus()
     this.alphabet = [...new Set(corpus)]
     this.charIndex = new Map(this.alphabet.map((char, index) => [char, index]))
     this.examples = windows(corpus, this.charIndex)
@@ -49,13 +49,24 @@ export class CharModel {
     this.lastLoss = this.loss()
   }
 
-  /** Сеть с весами от `seed`. Один и тот же seed даёт те же стартовые числа. */
-  static create(seed: number): CharModel {
-    return new CharModel(seed)
+  /**
+   * Сеть с весами от `seed`. Один и тот же seed даёт те же стартовые числа.
+   * Без `text` берётся фиксированный корпус. С `text` алфавит и окна строятся из него.
+   */
+  static create(seed: number, text?: string): CharModel {
+    return new CharModel(seed, text)
+  }
+
+  /** Есть ли хотя бы одно учебное окно. Без окон шаг не двигает веса. */
+  hasWindows(): boolean {
+    return this.examples.length > 0
   }
 
   /** Средняя кросс-энтропия по учебным окнам, без шага по весам. */
   loss(): number {
+    if (this.examples.length === 0) {
+      return 0
+    }
     let total = 0
     for (const example of this.examples) {
       total += this.stepLoss(example).at(0, 0)
@@ -64,10 +75,14 @@ export class CharModel {
   }
 
   /**
-   * Один шаг: окно из корпуса, softmax, кросс-энтропия верного символа, SGD.
+   * Один шаг: окно из текста, softmax, кросс-энтропия верного символа, SGD.
    * Возвращает ошибку этого окна до обновления весов.
+   * Если окон нет, возвращает последнюю конечную ошибку и не вызывает backward.
    */
   trainStep(): number {
+    if (this.examples.length === 0) {
+      return this.lastLoss
+    }
     const example = this.examples[this.cursor % this.examples.length]
     this.cursor += 1
     const loss = this.stepLoss(example)
@@ -88,6 +103,9 @@ export class CharModel {
    * затем окно сдвигается.
    */
   continue(prefix: string, count: number): string {
+    if (this.alphabet.length === 0) {
+      return ''
+    }
     let context = prefix
     let tail = ''
     for (let i = 0; i < count; i++) {

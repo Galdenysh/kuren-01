@@ -103,4 +103,41 @@ describe('character language model', () => {
     expect(Object.keys(snap).sort()).toEqual(['continuation', 'loss'])
     assertNoParameterArrays(snap)
   })
+
+  it('memorizes caller text and stays finite when there are no windows', () => {
+    const fixed = readCorpus()
+    const phrase = 'зебра ела сено'
+    expect(fixed.includes(phrase)).toBe(false)
+    expect(phrase.length).toBeGreaterThan(TAIL)
+    const prefix = phrase.slice(0, phrase.length - TAIL)
+    const expected = phrase.slice(phrase.length - TAIL)
+
+    const model = CharModel.create(SEED, phrase)
+    for (let step = 0; step < TRAIN_STEPS; step++) {
+      model.trainStep()
+    }
+
+    expect(model.continue(prefix, TAIL)).toBe(expected)
+    expect(readCorpus()).toBe(fixed)
+    expect(model.hasWindows()).toBe(true)
+
+    const empty = CharModel.create(SEED, '')
+    const blanks = CharModel.create(SEED, '   ')
+    expect(empty.hasWindows()).toBe(false)
+    expect(blanks.hasWindows()).toBe(false)
+
+    for (const blank of [empty, blanks]) {
+      const before = blank.loss()
+      expect(Number.isFinite(before)).toBe(true)
+      expect(before).toBeGreaterThanOrEqual(0)
+      const beforeTail = blank.snapshot(prefix, TAIL).continuation
+      expect(() => blank.trainStep()).not.toThrow()
+      const snap = blank.snapshot(prefix, TAIL)
+      expect(Number.isFinite(snap.loss)).toBe(true)
+      expect(snap.loss).toBeGreaterThanOrEqual(0)
+      expect(snap.continuation).toBe(beforeTail)
+    }
+
+    expect(empty.snapshot(prefix, TAIL).continuation).toBe('')
+  })
 })

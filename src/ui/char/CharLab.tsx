@@ -19,10 +19,11 @@ const INITIAL_PREFIX = defaultPrefix(CORPUS)
 
 /**
  * Экран заучивания короткого текста.
- * Ядро считает шаг и снимок, React хранит модель, начало и последний снимок.
+ * Ядро считает шаг и снимок. React хранит учебный текст, модель, начало и последний снимок.
  */
 export function CharLab() {
-  const [model, setModel] = useState(() => CharModel.create(SEED))
+  const [text, setText] = useState(CORPUS)
+  const [model, setModel] = useState(() => CharModel.create(SEED, CORPUS))
   const [prefix, setPrefix] = useState(INITIAL_PREFIX)
   const [busy, setBusy] = useState(false)
   const [snapshot, setSnapshot] = useState<CharSnapshot>(() =>
@@ -59,14 +60,29 @@ export function CharLab() {
     publish(model, value)
   }
 
+  const replaceModel = (nextText: string) => {
+    generationRef.current += 1
+    clearTimer()
+    busyRef.current = false
+    setBusy(false)
+    const next = CharModel.create(SEED, nextText)
+    setModel(next)
+    publish(next, prefixRef.current)
+  }
+
+  const onTextChange = (value: string) => {
+    setText(value)
+    replaceModel(value)
+  }
+
   const step = () => {
-    if (busyRef.current) return
+    if (busyRef.current || !model.hasWindows()) return
     model.trainStep()
     publish(model, prefixRef.current)
   }
 
   const train = () => {
-    if (busyRef.current) return
+    if (busyRef.current || !model.hasWindows()) return
     const generation = generationRef.current + 1
     generationRef.current = generation
     busyRef.current = true
@@ -94,13 +110,7 @@ export function CharLab() {
   }
 
   const reset = () => {
-    generationRef.current += 1
-    clearTimer()
-    busyRef.current = false
-    setBusy(false)
-    const next = CharModel.create(SEED)
-    setModel(next)
-    publish(next, prefixRef.current)
+    replaceModel(text)
   }
 
   return (
@@ -113,9 +123,31 @@ export function CharLab() {
         </p>
       </header>
 
-      <div>
-        <h2 className={styles.label}>Учебный текст</h2>
-        <pre className={styles.corpus}>{CORPUS}</pre>
+      <div className={styles.block}>
+        <label className={styles.field}>
+          <span className={styles.label}>Учебный текст</span>
+          <textarea
+            className={styles.corpus}
+            value={text}
+            spellCheck={false}
+            aria-describedby="corpus-rules"
+            onChange={(event) => onTextChange(event.target.value)}
+          />
+        </label>
+        <ul id="corpus-rules" className={styles.hint}>
+          <li>
+            Каждая строка — отдельная фраза. Сеть смотрит четыре предыдущих
+            символа и учит следующий. Через перевод строки окно не переходит.
+          </li>
+          <li>
+            Пробелы по краям строки снимаются. Если после этого в строке четыре
+            символа или меньше, окна из неё нет.
+          </li>
+          <li>
+            Когда окон нет совсем, «Шаг» и «Обучить» недоступны. Так бывает у
+            пустого поля и у строки из одних пробелов.
+          </li>
+        </ul>
       </div>
 
       <label className={styles.field}>
@@ -127,18 +159,33 @@ export function CharLab() {
         />
       </label>
 
-      <p className={styles.loss}>
-        Ошибка: <strong>{snapshot.loss.toFixed(4)}</strong>
-      </p>
-      <p className={styles.tail}>
-        Хвост: <strong>{snapshot.continuation}</strong>
-      </p>
+      <div className={styles.block}>
+        <h2 className={styles.label}>Выход</h2>
+        <ul className={styles.hint}>
+          <li>
+            Ошибка — число из снимка. До первого шага это среднее по окнам,
+            после шага — ошибка последнего окна. Без окон число остаётся
+            конечным.
+          </li>
+          <li>
+            Хвост — {TAIL} символов после поля «Начало». Каждый символ — самый
+            вероятный следующий из алфавита учебного текста. Пустой текст даёт
+            пустой хвост.
+          </li>
+        </ul>
+        <p className={styles.loss}>
+          Ошибка: <strong>{snapshot.loss.toFixed(4)}</strong>
+        </p>
+        <p className={styles.tail}>
+          Хвост: <strong>{snapshot.continuation}</strong>
+        </p>
+      </div>
 
       <div className={styles.toolbar}>
         <button
           type="button"
           className={styles.button}
-          disabled={busy}
+          disabled={busy || !model.hasWindows()}
           onClick={step}
         >
           Шаг
@@ -146,7 +193,7 @@ export function CharLab() {
         <button
           type="button"
           className={styles.button}
-          disabled={busy}
+          disabled={busy || !model.hasWindows()}
           onClick={train}
         >
           Обучить
