@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" width="100%" height="auto" role="img" aria-label="Окно из четырёх символов и one-hot">
+  <title>Окно « мыл» предсказывает «а»</title>
+  <rect width="760" height="360" rx="12" fill="#f8fafc"/>
+  <text x="28" y="32" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#1e293b">Фраза «мама мыла раму»</text>
+  <text x="250" y="32" font-family="system-ui, sans-serif" font-size="12" fill="#64748b">окно - последние 4 символа, цель - следующий</text>
+  <rect x="236" y="52" width="250" height="68" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <rect x="520" y="52" width="64" height="68" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <g font-family="system-ui, sans-serif" font-size="22" font-weight="700" text-anchor="middle">
+    <text x="56" y="94" fill="#64748b">м</text>
+    <text x="112" y="94" fill="#64748b">а</text>
+    <text x="168" y="94" fill="#64748b">м</text>
+    <text x="224" y="94" fill="#64748b">а</text>
+    <text x="268" y="94" fill="#0369a1">_</text>
+    <text x="324" y="94" fill="#0369a1">м</text>
+    <text x="380" y="94" fill="#0369a1">ы</text>
+    <text x="436" y="94" fill="#0369a1">л</text>
+    <text x="552" y="94" fill="#15803d">а</text>
+  </g>
+  <text x="360" y="140" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#0369a1">окно</text>
+  <text x="552" y="140" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#15803d">цель</text>
+  <text x="28" y="176" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#1e293b">One-hot</text>
+  <text x="110" y="176" font-family="system-ui, sans-serif" font-size="12" fill="#64748b">в каждом блоке одна единица, остальные нули</text>
+  <g font-family="system-ui, sans-serif" font-size="12" fill="#64748b" text-anchor="middle">
+    <text x="168" y="204">м</text>
+    <text x="204" y="204">а</text>
+    <text x="240" y="204">_</text>
+    <text x="276" y="204">ы</text>
+    <text x="312" y="204">л</text>
+    <text x="348" y="204">...</text>
+  </g>
+  <g font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#0369a1" text-anchor="end">
+    <text x="132" y="232">_</text>
+    <text x="132" y="264">м</text>
+    <text x="132" y="296">ы</text>
+    <text x="132" y="328">л</text>
+  </g>
+  <g fill="#e2e8f0" stroke="#cbd5e1">
+    <rect x="152" y="216" width="28" height="22" rx="4"/>
+    <rect x="188" y="216" width="28" height="22" rx="4"/>
+    <rect x="224" y="216" width="28" height="22" rx="4"/>
+    <rect x="260" y="216" width="28" height="22" rx="4"/>
+    <rect x="296" y="216" width="28" height="22" rx="4"/>
+    <rect x="332" y="216" width="28" height="22" rx="4"/>
+    <rect x="152" y="248" width="28" height="22" rx="4"/>
+    <rect x="188" y="248" width="28" height="22" rx="4"/>
+    <rect x="224" y="248" width="28" height="22" rx="4"/>
+    <rect x="260" y="248" width="28" height="22" rx="4"/>
+    <rect x="296" y="248" width="28" height="22" rx="4"/>
+    <rect x="332" y="248" width="28" height="22" rx="4"/>
+    <rect x="152" y="280" width="28" height="22" rx="4"/>
+    <rect x="188" y="280" width="28" height="22" rx="4"/>
+    <rect x="224" y="280" width="28" height="22" rx="4"/>
+    <rect x="260" y="280" width="28" height="22" rx="4"/>
+    <rect x="296" y="280" width="28" height="22" rx="4"/>
+    <rect x="332" y="280" width="28" height="22" rx="4"/>
+    <rect x="152" y="312" width="28" height="22" rx="4"/>
+    <rect x="188" y="312" width="28" height="22" rx="4"/>
+    <rect x="224" y="312" width="28" height="22" rx="4"/>
+    <rect x="260" y="312" width="28" height="22" rx="4"/>
+    <rect x="296" y="312" width="28" height="22" rx="4"/>
+    <rect x="332" y="312" width="28" height="22" rx="4"/>
+  </g>
+  <g fill="#0284c7">
+    <rect x="224" y="216" width="28" height="22" rx="4"/>
+    <rect x="152" y="248" width="28" height="22" rx="4"/>
+    <rect x="260" y="280" width="28" height="22" rx="4"/>
+    <rect x="296" y="312" width="28" height="22" rx="4"/>
+  </g>
+  <text x="390" y="270" font-family="system-ui, sans-serif" font-size="13" fill="#334155">четыре блока подряд</text>
+  <text x="390" y="292" font-family="system-ui, sans-serif" font-size="13" fill="#334155">дают вектор длины 4 x 17 = 68</text>
+</svg>

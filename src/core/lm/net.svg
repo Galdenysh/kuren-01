@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 440" width="100%" height="auto" role="img" aria-label="Сеть: окно one-hot, скрытый sigmoid, softmax по алфавиту">
+  <title>Окно 68, скрытый слой 64, softmax 17</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrow-bias" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#d97706"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="920" height="440" rx="12" fill="#f8fafc"/>
+  <text x="150" y="36" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#1e293b">Окно one-hot (68)</text>
+  <text x="450" y="36" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#1e293b">Скрытый слой (64)</text>
+  <text x="750" y="36" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#1e293b">Softmax (17)</text>
+  <g font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#0369a1">
+    <rect x="48" y="78" width="200" height="48" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="2" filter="url(#shadow)"/>
+    <text x="148" y="107" text-anchor="middle">символ t-3, 17 чисел</text>
+    <rect x="48" y="142" width="200" height="48" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="2" filter="url(#shadow)"/>
+    <text x="148" y="171" text-anchor="middle">символ t-2, 17 чисел</text>
+    <rect x="48" y="206" width="200" height="48" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="2" filter="url(#shadow)"/>
+    <text x="148" y="235" text-anchor="middle">символ t-1, 17 чисел</text>
+    <rect x="48" y="270" width="200" height="48" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="2" filter="url(#shadow)"/>
+    <text x="148" y="299" text-anchor="middle">символ t, 17 чисел</text>
+  </g>
+  <line x1="248" y1="190" x2="360" y2="190" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="268" y="166" width="72" height="20" rx="4" fill="#f8fafc"/>
+  <text x="304" y="180" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#334155">W1, b1</text>
+  <circle cx="450" cy="120" r="36" fill="#ede9fe" stroke="#7c3aed" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="450" y="116" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#5b21b6">h0</text>
+  <text x="450" y="132" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#6d28d9">sigmoid</text>
+  <circle cx="450" cy="210" r="36" fill="#ede9fe" stroke="#7c3aed" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="450" y="206" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#5b21b6">h1</text>
+  <text x="450" y="222" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#6d28d9">sigmoid</text>
+  <text x="450" y="268" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" fill="#7c3aed">...</text>
+  <circle cx="450" cy="320" r="36" fill="#ede9fe" stroke="#7c3aed" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="450" y="316" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="700" fill="#5b21b6">h63</text>
+  <text x="450" y="332" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#6d28d9">sigmoid</text>
+  <line x1="450" y1="70" x2="450" y2="84" stroke="#d97706" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrow-bias)"/>
+  <rect x="412" y="44" width="76" height="22" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="450" y="59" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#b45309">b1</text>
+  <line x1="486" y1="190" x2="620" y2="190" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="520" y="166" width="72" height="20" rx="4" fill="#f8fafc"/>
+  <text x="556" y="180" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#334155">W2, b2</text>
+  <line x1="750" y1="78" x2="750" y2="100" stroke="#d97706" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrow-bias)"/>
+  <rect x="712" y="52" width="76" height="22" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="750" y="67" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#b45309">b2</text>
+  <g font-family="system-ui, sans-serif" font-size="12" fill="#166534">
+    <rect x="690" y="112" width="150" height="22" rx="4" fill="#bbf7d0"/>
+    <text x="765" y="127" text-anchor="middle">p(м) ...</text>
+    <rect x="690" y="142" width="96" height="22" rx="4" fill="#86efac"/>
+    <text x="765" y="157" text-anchor="middle">p(а)</text>
+    <rect x="690" y="172" width="48" height="22" rx="4" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="765" y="187" text-anchor="middle">p(_)</text>
+    <text x="765" y="222" text-anchor="middle" fill="#16a34a">...</text>
+    <rect x="690" y="236" width="70" height="22" rx="4" fill="#bbf7d0"/>
+    <text x="765" y="251" text-anchor="middle">p(х)</text>
+  </g>
+  <text x="765" y="292" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#15803d">сумма p = 1</text>
+  <text x="460" y="390" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" fill="#475569">h = sigmoid(x * W1 + b1),   p = softmax(h * W2 + b2)</text>
+  <text x="460" y="414" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#64748b">продолжение берёт символ с наибольшей вероятностью</text>
+</svg>

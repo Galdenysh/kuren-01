@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 320" width="100%" height="auto" role="img" aria-label="Шаг обучения одного окна и снимок продолжения">
+  <title>Окно, прямой проход, кросс-энтропия, обратный проход, обновление, снимок</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#64748b"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+  <rect width="920" height="320" rx="12" fill="#f8fafc"/>
+  <text x="28" y="32" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#1e293b">Один шаг</text>
+  <text x="120" y="32" font-family="system-ui, sans-serif" font-size="12" fill="#64748b">одно учебное окно, затем сдвиг курсора</text>
+  <rect x="24" y="52" width="140" height="64" rx="12" fill="#e0f2fe" stroke="#0284c7" stroke-width="2" filter="url(#shadow)"/>
+  <text x="94" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#0369a1">Окно</text>
+  <text x="94" y="98" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#0369a1">4 символа + цель</text>
+  <line x1="164" y1="84" x2="192" y2="84" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="196" y="52" width="168" height="64" rx="12" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" filter="url(#shadow)"/>
+  <text x="280" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#5b21b6">Прямой проход</text>
+  <text x="280" y="98" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#6d28d9">sigmoid, затем softmax</text>
+  <line x1="364" y1="84" x2="392" y2="84" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="396" y="52" width="150" height="64" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
+  <text x="471" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#b45309">Ошибка</text>
+  <text x="471" y="98" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#b45309">-log вероятности цели</text>
+  <line x1="546" y1="84" x2="574" y2="84" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="578" y="52" width="160" height="64" rx="12" fill="#ede9fe" stroke="#7c3aed" stroke-width="2" filter="url(#shadow)"/>
+  <text x="658" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#5b21b6">Обратный проход</text>
+  <text x="658" y="98" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#6d28d9">наклоны в grad</text>
+  <line x1="738" y1="84" x2="766" y2="84" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="770" y="52" width="126" height="64" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2" filter="url(#shadow)"/>
+  <text x="833" y="78" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#15803d">Обновление</text>
+  <text x="833" y="98" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#166534">W и b</text>
+  <path d="M471,116 L471,156 L280,156 L280,176" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M833,116 L833,156 L520,156 L520,176" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="168" y="180" width="224" height="64" rx="12" fill="#ffffff" stroke="#64748b" stroke-width="2" filter="url(#shadow)"/>
+  <text x="280" y="206" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#1e293b">Продолжение</text>
+  <text x="280" y="226" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#475569">символ с max p, сдвиг окна</text>
+  <line x1="392" y1="212" x2="430" y2="212" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="434" y="180" width="250" height="64" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2" filter="url(#shadow)"/>
+  <text x="559" y="206" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#15803d">Снимок</text>
+  <text x="559" y="226" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#166534">loss и continuation</text>
+  <text x="28" y="286" font-family="system-ui, sans-serif" font-size="12" fill="#64748b">Снимок - число и строка. Массивы весов наружу не отдаются. Экрана у этого слоя нет.</text>
+</svg>
