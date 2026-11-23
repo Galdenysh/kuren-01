@@ -40,9 +40,9 @@ npm run verify   # тесты, lint, build
 
 ## OpenSpec
 
-Живые спеки: `openspec/specs/nn-core`, `training-lab`, `training-agent`, `deployment`.
+Живые спеки: `openspec/specs/nn-core`, `char-lm`, `training-lab`, `training-agent`, `deployment`.
 
-Архив срезов: `openspec/changes/archive/` (`xor-training-lab`, `xor-training-agent`, `training-ui-spec-sync`, `gh-pages-deploy`, …).
+Архив срезов: `openspec/changes/archive/` (`xor-training-lab`, `xor-training-agent`, `training-ui-spec-sync`, `gh-pages-deploy`, `char-lm`, …).
 
 Новый срез: `/opsx-propose`, применение после ревью `proposal.md` и `design.md`.
 
