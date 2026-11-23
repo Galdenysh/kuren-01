@@ -186,6 +186,89 @@ export class Tensor {
     return out
   }
 
+  /**
+   * Softmax по каждой строке: положительные вероятности с суммой 1.
+   * Перед exp вычитается максимум строки, чтобы большие оценки не переполняли exp.
+   */
+  softmax(): Tensor {
+    const outData = new Float64Array(this.data.length)
+    for (let r = 0; r < this.rows; r++) {
+      let max = -Infinity
+      for (let c = 0; c < this.cols; c++) {
+        max = Math.max(max, this.data[this.idx(r, c)])
+      }
+      let sum = 0
+      for (let c = 0; c < this.cols; c++) {
+        const exp = Math.exp(this.data[this.idx(r, c)] - max)
+        outData[this.idx(r, c)] = exp
+        sum += exp
+      }
+      for (let c = 0; c < this.cols; c++) {
+        outData[this.idx(r, c)] /= sum
+      }
+    }
+    const out = new Tensor(outData, this.rows, this.cols, this.requiresGrad)
+    out.linkParents(this)
+    out.backwardFn = () => {
+      if (!this.requiresGrad) {
+        return
+      }
+      for (let r = 0; r < this.rows; r++) {
+        let dot = 0
+        for (let c = 0; c < this.cols; c++) {
+          const i = this.idx(r, c)
+          dot += out.grad![i] * outData[i]
+        }
+        for (let c = 0; c < this.cols; c++) {
+          const i = this.idx(r, c)
+          this.grad![i] += outData[i] * (out.grad![i] - dot)
+        }
+      }
+    }
+    return out
+  }
+
+  /**
+   * Кросс-энтропия верного класса: среднее −log(p) по строкам.
+   * `classIndex` — столбец верного класса. На входе вероятности, обычно после {@link softmax}.
+   */
+  crossEntropy(classIndex: number): Tensor {
+    if (
+      !Number.isInteger(classIndex) ||
+      classIndex < 0 ||
+      classIndex >= this.cols ||
+      this.rows === 0
+    ) {
+      throw new Error('crossEntropy: class index out of range')
+    }
+    let total = 0
+    for (let r = 0; r < this.rows; r++) {
+      const probability = this.data[this.idx(r, classIndex)]
+      if (!(probability > 0)) {
+        throw new Error('crossEntropy: probability must be positive')
+      }
+      total += -Math.log(probability)
+    }
+    const out = new Tensor(
+      Float64Array.of(total / this.rows),
+      1,
+      1,
+      this.requiresGrad,
+    )
+    out.linkParents(this)
+    out.backwardFn = () => {
+      if (!this.requiresGrad) {
+        return
+      }
+      const upstream = out.grad![0] / this.rows
+      for (let r = 0; r < this.rows; r++) {
+        const i = this.idx(r, classIndex)
+        this.grad![i] += upstream * (-1 / this.data[i])
+      }
+    }
+    return out
+  }
+
   private accumGrad(source: Float64Array): void {
     if (!this.grad) {
       return

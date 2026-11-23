@@ -1,6 +1,6 @@
 import type { XorSample } from './dataset'
 import type { NetworkSnapshot } from './snapshot'
-import { Tensor } from './tensor'
+import { Tensor } from '../tensor/tensor'
 
 /**
  * MLP 2 → 2 → 1 для XOR. Хранит обучаемые веса; {@link forwardRow} — один forward.

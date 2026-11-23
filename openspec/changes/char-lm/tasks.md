@@ -2,10 +2,10 @@
 
 ## 1. Общий пакет тензора
 
-- [ ] 1.1 Перенести `tensor.ts`, `tensor.test.ts` и `autograd.test.ts` в `src/core/tensor`. Обновить импорты в `mlp`, `trainer`, реэкспорт барреля `nn` и только `src/core/agent/agent.test.ts`. `tools.ts` остаётся на публичном `src/core/nn`. Проверка: `npx vitest run src/core/nn src/core/agent src/core/tensor` зелёный, формулы XOR не менялись.
-- [ ] 1.2 Починить ссылки после переноса. В `src/core/nn/README.md` цели `](tensor.ts)` и `](autograd.test.ts)` заменить на `../tensor/tensor.ts` и `../tensor/autograd.test.ts`; строку таблицы «`tensor.ts` | числа и градиенты» убрать или перенести. В корневом `README.md` сменить назначение `src/core/nn` и добавить строку `src/core/tensor`. Проверка: в `nn/README.md` не осталось `](tensor.ts)` и `](autograd.test.ts)`.
-- [ ] 1.3 Написать падающий тест в `src/core/tensor`: softmax даёт положительные числа с суммой 1, кросс-энтропия верного класса неотрицательна и уменьшается, когда вероятность этого класса растёт. Проверка: `npx vitest run src/core/tensor/tensor.test.ts` красный на отсутствующих методах.
-- [ ] 1.4 Добавить softmax и кросс-энтропию в `Tensor`. Проверка: новый тест зелёный, тесты `src/core/nn` и `src/core/agent` зелёные.
+- [x] 1.1 Перенести `tensor.ts`, `tensor.test.ts` и `autograd.test.ts` в `src/core/tensor`. Обновить импорты в `mlp`, `trainer`, реэкспорт барреля `nn` и только `src/core/agent/agent.test.ts`. `tools.ts` остаётся на публичном `src/core/nn`. Проверка: `npx vitest run src/core/nn src/core/agent src/core/tensor` зелёный, формулы XOR не менялись.
+- [x] 1.2 Починить ссылки после переноса. В `src/core/nn/README.md` цели `](tensor.ts)` и `](autograd.test.ts)` заменить на `../tensor/tensor.ts` и `../tensor/autograd.test.ts`; строку таблицы «`tensor.ts` | числа и градиенты» убрать или перенести. В корневом `README.md` сменить назначение `src/core/nn` и добавить строку `src/core/tensor`. Проверка: в `nn/README.md` не осталось `](tensor.ts)` и `](autograd.test.ts)`.
+- [x] 1.3 Написать падающий тест в `src/core/tensor`: softmax даёт положительные числа с суммой 1, кросс-энтропия верного класса неотрицательна и уменьшается, когда вероятность этого класса растёт. Проверка: `npx vitest run src/core/tensor/tensor.test.ts` красный на отсутствующих методах.
+- [x] 1.4 Добавить softmax и кросс-энтропию в `Tensor`. Проверка: новый тест зелёный, тесты `src/core/nn` и `src/core/agent` зелёные.
 
 ## 2. Падающие тесты языковой модели
 

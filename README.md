@@ -23,11 +23,12 @@ npm run verify   # тесты, lint, build
 
 ## Слои
 
-| Путь             | Назначение                                |
-| ---------------- | ----------------------------------------- |
-| `src/core/nn`    | Тензор, autograd, MLP, trainer, снимок    |
-| `src/core/agent` | `RuleAgent`, правило, инструменты trainer |
-| `src/ui/lab`     | Лаборатория и панель агента (React)       |
+| Путь              | Назначение                                |
+| ----------------- | ----------------------------------------- |
+| `src/core/tensor` | Тензор и autograd                         |
+| `src/core/nn`     | MLP, trainer, снимок XOR                  |
+| `src/core/agent`  | `RuleAgent`, правило, инструменты trainer |
+| `src/ui/lab`      | Лаборатория и панель агента (React)       |
 
 Правила: корневой [`AGENTS.md`](AGENTS.md) — индекс; детали в `openspec/AGENTS.md`, `src/core/AGENTS.md`, `src/ui/AGENTS.md`.
 
