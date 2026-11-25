@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { XOR_DATASET } from '../nn/dataset'
 import { Mlp } from '../nn/mlp'
-import { Tensor } from '../nn/tensor'
+import { Tensor } from '../tensor/tensor'
 import { Trainer } from '../nn/trainer'
 import type { NetworkSnapshot } from '../nn/snapshot'
 import { RuleAgent, createTrainerTools } from './index'

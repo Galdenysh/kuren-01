@@ -41,4 +41,32 @@ describe('Tensor', () => {
     const neg = Tensor.from([[-10]])
     expect(neg.sigmoid().toArray()[0][0]).toBeCloseTo(0, 4)
   })
+
+  it('softmax is positive and sums to 1 per row', () => {
+    const probs = Tensor.from([
+      [1, 2, 3],
+      [0, 0, 0],
+    ]).softmax()
+    for (const row of probs.toArray()) {
+      for (const value of row) {
+        expect(value).toBeGreaterThan(0)
+      }
+      expect(row.reduce((sum, value) => sum + value, 0)).toBeCloseTo(1, 5)
+    }
+  })
+
+  it('cross-entropy of the correct class is non-negative and falls as that probability grows', () => {
+    const unlikely = Tensor.from([[0.2, 0.8]]).crossEntropy(0)
+    const likely = Tensor.from([[0.9, 0.1]]).crossEntropy(0)
+    expect(unlikely.at(0, 0)).toBeGreaterThanOrEqual(0)
+    expect(likely.at(0, 0)).toBeGreaterThanOrEqual(0)
+    expect(likely.at(0, 0)).toBeLessThan(unlikely.at(0, 0))
+  })
+
+  it('sends cross-entropy gradient back to the scores', () => {
+    const scores = Tensor.from([[1, 2, 0.5]], { requiresGrad: true })
+    const loss = scores.softmax().crossEntropy(0)
+    loss.backward()
+    expect(scores.grad![0]).not.toBe(0)
+  })
 })

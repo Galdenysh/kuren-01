@@ -70,7 +70,7 @@
 - `W₁[1,j]` — вес связи от входа `x₁` к нейрону `j`;
 - `b₁[0,j]` — смещение нейрона `j`. В тензоре `b1` это строка `1×2`: единственная строка `0`, столбец `j`.
 
-Активация каждого нейрона считается по формуле: `hⱼ = σ(zⱼ)` — сигмоида, см. [`tensor.ts`, `sigmoid`](tensor.ts)
+Активация каждого нейрона считается по формуле: `hⱼ = σ(zⱼ)` — сигмоида, см. [`tensor.ts`, `sigmoid`](../tensor/tensor.ts)
 
 **Выход** (один нейрон):
 
@@ -82,7 +82,7 @@
 
 Предсказание высчитывается по формуле `ŷ = σ(z₂)`. Сигмоида даёт число строго между 0 и 1.
 
-В коде слои записаны как `x.matmul(w1).add(b1)` и `hidden.matmul(w2).add(b2)` — то же, что формулы выше. Реализация умножения: [`tensor.ts`, `matmul`](tensor.ts), сложение со смещением: [`add`](tensor.ts).
+В коде слои записаны как `x.matmul(w1).add(b1)` и `hidden.matmul(w2).add(b2)` — то же, что формулы выше. Реализация умножения: [`tensor.ts`, `matmul`](../tensor/tensor.ts), сложение со смещением: [`add`](../tensor/tensor.ts).
 
 #### 2. Loss
 
@@ -171,7 +171,7 @@
 
 `∂L/∂z₂ = ∂L/∂ŷ · ŷ(1−ŷ)`
 
-В коде тот же множитель в `sigmoid`: к градиенту входа добавляется `out.grad[i] * s * (1 - s)` ([`tensor.ts`](tensor.ts)). На выходе `s` равно `ŷ`.
+В коде тот же множитель в `sigmoid`: к градиенту входа добавляется `out.grad[i] * s * (1 - s)` ([`tensor.ts`](../tensor/tensor.ts)). На выходе `s` равно `ŷ`.
 
 **3.3. Выходные параметры.** Определяем градиенты выходного слоя `∂L/∂W₂[0,0]`, `∂L/∂W₂[1,0]`, `∂L/∂b₂[0,0]`. **L** не содержит `W₂` и `b₂` напрямую. Они входят в **L** только потому, что входят в `z₂`, а `z₂` входит в `ŷ`. По цепному правилу `∂L/∂p = ∂L/∂z₂ · ∂z₂/∂p` для любого параметра `p`, где `p` — это `W₂[0,0]`, `W₂[1,0]` или `b₂[0,0]`.
 
@@ -245,24 +245,24 @@
 - `W₂[0,0]`, `W₂[1,0]` вычитают `η · ∂L/∂W₂[…]`;
 - `b₂[0,0]` вычитает `η · ∂L/∂b₂[0,0]`.
 
-В коде это [`tensor.ts`, `applyGrad`](tensor.ts): `data[i] -= learningRate * grad[i]`. [`trainStep`](trainer.ts) вызывает `applyGrad` на `w1`, `b1`, `w2`, `b2` после `loss.backward()`.
+В коде это [`tensor.ts`, `applyGrad`](../tensor/tensor.ts): `data[i] -= learningRate * grad[i]`. [`trainStep`](trainer.ts) вызывает `applyGrad` на `w1`, `b1`, `w2`, `b2` после `loss.backward()`.
 
 ## Концепция → код
 
-| Идея                                    | Где смотреть                                                                          |
-| --------------------------------------- | ------------------------------------------------------------------------------------- |
-| Эталон XOR (4 строки)                   | [`dataset.ts`](dataset.ts) — `XOR_DATASET`                                            |
-| Создать сеть 2→2→1, веса W₁…b₂          | [`mlp.ts`](mlp.ts) — `Mlp.xorMlp`, поля `w1`…`b2`                                     |
-| Один forward (демо / граф)              | [`mlp.ts`](mlp.ts) — `forwardRow`                                                     |
-| Список обучаемых тензоров               | [`mlp.ts`](mlp.ts) — `parameters`                                                     |
-| Ошибка по batch                         | [`mlp.ts`](mlp.ts) — `mseLoss`                                                        |
-| Снимок для экрана (числа, не Tensor)    | [`mlp.ts`](mlp.ts) — `snapshot`; тип [`snapshot.ts`](snapshot.ts) — `NetworkSnapshot` |
-| Цикл Forward → Loss → Backward → Update | [`trainer.ts`](trainer.ts) — `trainStep` (комментарии 1–4 внутри)                     |
-| Граф для выбранного входа, без обучения | [`trainer.ts`](trainer.ts) — `probeSnapshot`                                          |
-| Матрицы, sigmoid, autograd              | [`tensor.ts`](tensor.ts) — `from`, `matmul`, `sigmoid`, `backward`, `applyGrad`       |
-| Мини-пример backward без MLP            | [`autograd.test.ts`](autograd.test.ts)                                                |
-| Критерий «XOR выучен»                   | [`xor.test.ts`](xor.test.ts)                                                          |
-| Публичный импорт                        | [`index.ts`](index.ts)                                                                |
+| Идея                                    | Где смотреть                                                                              |
+| --------------------------------------- | ----------------------------------------------------------------------------------------- |
+| Эталон XOR (4 строки)                   | [`dataset.ts`](dataset.ts) — `XOR_DATASET`                                                |
+| Создать сеть 2→2→1, веса W₁…b₂          | [`mlp.ts`](mlp.ts) — `Mlp.xorMlp`, поля `w1`…`b2`                                         |
+| Один forward (демо / граф)              | [`mlp.ts`](mlp.ts) — `forwardRow`                                                         |
+| Список обучаемых тензоров               | [`mlp.ts`](mlp.ts) — `parameters`                                                         |
+| Ошибка по batch                         | [`mlp.ts`](mlp.ts) — `mseLoss`                                                            |
+| Снимок для экрана (числа, не Tensor)    | [`mlp.ts`](mlp.ts) — `snapshot`; тип [`snapshot.ts`](snapshot.ts) — `NetworkSnapshot`     |
+| Цикл Forward → Loss → Backward → Update | [`trainer.ts`](trainer.ts) — `trainStep` (комментарии 1–4 внутри)                         |
+| Граф для выбранного входа, без обучения | [`trainer.ts`](trainer.ts) — `probeSnapshot`                                              |
+| Матрицы, sigmoid, autograd              | [`tensor.ts`](../tensor/tensor.ts) — `from`, `matmul`, `sigmoid`, `backward`, `applyGrad` |
+| Мини-пример backward без MLP            | [`autograd.test.ts`](../tensor/autograd.test.ts)                                          |
+| Критерий «XOR выучен»                   | [`xor.test.ts`](xor.test.ts)                                                              |
+| Публичный импорт                        | [`index.ts`](index.ts)                                                                    |
 
 **UI** ([`src/ui/lab`](../../ui/lab)): кнопка «Шаг» → `trainStep`; радио входа → `probeSnapshot`. Математики в React нет.
 
@@ -277,7 +277,6 @@
 | `dataset.ts`  | эталон                     |
 | `mlp.ts`      | сеть + forward + loss      |
 | `trainer.ts`  | обучение + probe для графа |
-| `tensor.ts`   | числа и градиенты          |
 | `snapshot.ts` | тип снимка                 |
 | `*.test.ts`   | TDD-проверки               |
 | `index.ts`    | экспорт                    |

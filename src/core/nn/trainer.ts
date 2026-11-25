@@ -1,7 +1,7 @@
 import type { XorSample } from './dataset'
 import { mseLoss, Mlp } from './mlp'
 import type { NetworkSnapshot } from './snapshot'
-import { Tensor } from './tensor'
+import { Tensor } from '../tensor/tensor'
 
 /** Скорость обучения (learning rate) по умолчанию */
 const DEFAULT_LR = 0.5

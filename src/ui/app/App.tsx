@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { createTrainerTools, RuleAgent } from '../../core/agent'
 import { Mlp, Trainer, XOR_DATASET } from '../../core/nn'
+import { CharLab } from '../char'
 import { AgentPanel, SCREEN_AGENT_GOAL, TrainingLab } from '../lab'
 import styles from './App.module.css'
+
+type Screen = 'xor' | 'char'
 
 const LAB_SEED = 42
 
@@ -14,6 +17,7 @@ export default function App() {
     () => new RuleAgent(SCREEN_AGENT_GOAL, createTrainerTools(trainer)),
   )
   const [sessionId, setSessionId] = useState(0)
+  const [screen, setScreen] = useState<Screen>('xor')
 
   const [trainRevision, setTrainRevision] = useState(0)
   const [lossHistory, setLossHistory] = useState<number[]>(() => [
@@ -38,24 +42,48 @@ export default function App() {
   return (
     <main className={styles.shell}>
       <div className={styles.stack}>
-        <header className={styles.pageHeader}>
-          <h1 className={styles.pageTitle}>Лаборатория XOR</h1>
-          <p className={styles.pageLead}>
-            Сеть 2→2→1 учится на XOR. Схема сети, ошибка (loss) и веса считаются
-            в ядре и отображаются без подставных чисел.
-          </p>
-        </header>
-        <AgentPanel
-          key={sessionId}
-          agent={agent}
-          onLossesApplied={appendLosses}
-        />
-        <TrainingLab
-          trainer={trainer}
-          lossHistory={lossHistory}
-          trainRevision={trainRevision}
-          onResetNetwork={resetNetwork}
-        />
+        <div className={styles.switcher} role="group" aria-label="Экран">
+          <button
+            type="button"
+            className={screen === 'xor' ? styles.switchActive : styles.switch}
+            aria-pressed={screen === 'xor'}
+            onClick={() => setScreen('xor')}
+          >
+            XOR
+          </button>
+          <button
+            type="button"
+            className={screen === 'char' ? styles.switchActive : styles.switch}
+            aria-pressed={screen === 'char'}
+            onClick={() => setScreen('char')}
+          >
+            Символы
+          </button>
+        </div>
+        <div
+          className={screen === 'xor' ? styles.stack : styles.hiddenScreen}
+          aria-hidden={screen !== 'xor'}
+        >
+          <header className={styles.pageHeader}>
+            <h1 className={styles.pageTitle}>Лаборатория XOR</h1>
+            <p className={styles.pageLead}>
+              Сеть 2→2→1 учится на XOR. Схема сети, ошибка (loss) и веса
+              считаются в ядре и отображаются без подставных чисел.
+            </p>
+          </header>
+          <AgentPanel
+            key={sessionId}
+            agent={agent}
+            onLossesApplied={appendLosses}
+          />
+          <TrainingLab
+            trainer={trainer}
+            lossHistory={lossHistory}
+            trainRevision={trainRevision}
+            onResetNetwork={resetNetwork}
+          />
+        </div>
+        {screen === 'char' ? <CharLab /> : null}
       </div>
     </main>
   )

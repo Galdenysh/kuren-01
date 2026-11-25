@@ -26,7 +26,7 @@
 
 Перед кодом: `npx openspec list` и `npx openspec status --change <name>`.
 
-Срезы `xor-training-agent`, `training-ui-spec-sync` и `gh-pages-deploy` заархивированы (`changes/archive/2026-11-11-*`). Активных change нет. Новый срез — `/opsx-propose`.
+Срезы `xor-training-agent`, `training-ui-spec-sync` и `gh-pages-deploy` заархивированы (`changes/archive/2026-11-11-*`). `char-lm` и `char-lab` заархивированы (`changes/archive/2026-11-23-*`). `editable-corpus` заархивирован (`changes/archive/2026-11-24-editable-corpus`). Активных change нет. Новый срез — `/opsx-propose`.
 
 ## Запрещено
 

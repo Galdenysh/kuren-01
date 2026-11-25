@@ -10,6 +10,37 @@
   gap: 24px;
 }
 
+.hiddenScreen {
+  display: none;
+}
+
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.switch,
+.switchActive {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+}
+
+.switch {
+  background: var(--card);
+  color: var(--text-h);
+}
+
+.switchActive {
+  background: var(--accent);
+  color: #1a1028;
+  border-color: transparent;
+  font-weight: 600;
+}
+
 .pageHeader {
   display: flex;
   flex-direction: column;
